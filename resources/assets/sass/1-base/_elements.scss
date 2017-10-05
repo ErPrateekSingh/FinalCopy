@@ -1,0 +1,11 @@
+body {
+  width: 360px;
+  min-width: 360px;
+  width: auto !important;
+}
+
+button {
+  &:hover, &:active, &:focus {
+    outline: 0;
+  }
+}

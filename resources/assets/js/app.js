@@ -1,22 +1,27 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
+require('./ripple');
 
 window.Vue = require('vue');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-// 
-// Vue.component('example', require('./components/Example.vue'));
-//
+// code to prevent dropdown from closing on click inside STARTS
+$(document).on('click', '.dd-user .dropdown-menu', function (e) { e.stopPropagation(); });
+$(document).on('click', '.dd-notification .dropdown-menu', function (e) { e.stopPropagation(); });
+// code to prevent dropdown from closing on click inside ENDS
+
+// code to delay display of modal by 100 millisecond STARTS
+$('[data-toggle=modal]').on('click', function (e) {
+    var $target = $($(this).data('target'));
+    $target.data('triggered',true);
+    setTimeout(function() {
+        if ($target.data('triggered')) {
+            $target.modal('show')
+                .data('triggered',false); // prevents multiple clicks from reopening
+        };
+    }, 100); // milliseconds
+    return false;
+});
+// code to delay display of modal by 300 millisecond ENDS
+
 // const app = new Vue({
 //     el: '#app'
 // });

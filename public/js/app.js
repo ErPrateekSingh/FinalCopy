@@ -773,32 +773,40 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(9);
-module.exports = __webpack_require__(36);
+module.exports = __webpack_require__(37);
 
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 __webpack_require__(10);
+__webpack_require__(35);
 
-window.Vue = __webpack_require__(35);
+window.Vue = __webpack_require__(36);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-// 
-// Vue.component('example', require('./components/Example.vue'));
-//
+// code to prevent dropdown from closing on click inside STARTS
+$(document).on('click', '.dd-user .dropdown-menu', function (e) {
+    e.stopPropagation();
+});
+$(document).on('click', '.dd-notification .dropdown-menu', function (e) {
+    e.stopPropagation();
+});
+// code to prevent dropdown from closing on click inside ENDS
+
+// code to delay display of modal by 100 millisecond STARTS
+$('[data-toggle=modal]').on('click', function (e) {
+    var $target = $($(this).data('target'));
+    $target.data('triggered', true);
+    setTimeout(function () {
+        if ($target.data('triggered')) {
+            $target.modal('show').data('triggered', false); // prevents multiple clicks from reopening
+        };
+    }, 100); // milliseconds
+    return false;
+});
+// code to delay display of modal by 300 millisecond ENDS
+
 // const app = new Vue({
 //     el: '#app'
 // });
@@ -31690,6 +31698,51 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 35 */
+/***/ (function(module, exports) {
+
+jQuery(function ($) {
+   $(document).on("mousedown", "[data-ripple]", function (e) {
+      var $self = $(this);
+      if ($self.is(".btn-disabled")) {
+         return;
+      }
+      if ($self.closest("[data-ripple]")) {
+         e.stopPropagation();
+      }
+
+      var initPos = $self.css("position"),
+          offs = $self.offset(),
+          x = e.pageX - offs.left,
+          y = e.pageY - offs.top,
+          dia = Math.min(this.offsetHeight, this.offsetWidth, 100),
+          // start diameter
+      $ripple = $('<div/>', { class: "ripple", appendTo: $self });
+
+      if (!initPos || initPos === "static") {
+         $self.css({ position: "relative" });
+      }
+
+      $('<div/>', {
+         class: "rippleWave",
+         css: {
+            background: $self.data("ripple"),
+            width: dia,
+            height: dia,
+            left: x - dia / 2,
+            top: y - dia / 2
+         },
+         appendTo: $ripple,
+         one: {
+            animationend: function animationend() {
+               $ripple.remove();
+            }
+         }
+      });
+   });
+});
+
+/***/ }),
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41889,7 +41942,7 @@ module.exports = Vue$3;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

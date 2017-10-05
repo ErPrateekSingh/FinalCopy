@@ -1,0 +1,28 @@
+/*Classes for Buttons*/
+.flatButton {
+   background-image: none;
+   background-color: transparent;
+   border: 0px solid transparent;
+}
+
+.btn-red {
+   color: #fff;
+   background-color: #f4545f !important;
+   &:active, &:hover, &:focus {
+      color: #fff;
+      background-color: #f5454f !important;
+   }
+}
+
+.text-trim{
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+}
+
+.divider {
+   height: 1px;
+   overflow: hidden;
+   margin: 10px 20px;
+   background-color: #e5e5e5;
+}
