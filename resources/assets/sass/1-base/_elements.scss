@@ -1,11 +1,23 @@
+body,
+input,
+select,
+textarea {
+	font-family: 'Roboto', sans-serif;
+}
+
 body {
-  width: 360px;
-  min-width: 360px;
-  width: auto !important;
+   width: 360px;
+   min-width: 360px;
+   width: auto !important;
+   background-color: #fff;
 }
 
 button {
-  &:hover, &:active, &:focus {
-    outline: 0;
-  }
+   &:hover, &:active, &:focus {
+      outline: 0;
+   }
+}
+html {
+	font-size: 14px;
+	font-family: 'Roboto', sans-serif;
 }

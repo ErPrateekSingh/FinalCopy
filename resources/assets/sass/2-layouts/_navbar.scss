@@ -1,25 +1,30 @@
 .navbar{
+   height: 56px;
+   border-left: 0px;
+   border-right: 0px;
+   margin: 0px !important;
+   padding: 0px !important;
    border-radius: 0px !important;
-   margin-bottom: 0px !important;
    border-top: 5px solid #f4546f !important;
    .navbar-brand{
-      margin: 1px 0px;
       font-size: 24px;
-      line-height: 24px;
-      padding: 13px 15px !important;
+      line-height: 28px;
+      padding: 11px 15px !important;
    }
    .navbar-collapse > form {
-      margin-top: 8px;
-      margin-bottom: 8px;
+      height: 36px;
+      padding: 0px;
+   }
+   .form-group {
+      vertical-align: inherit !important;
    }
    .header-city-name {
       width: auto;
       cursor: pointer;
       font-size: 14px;
-      padding: 6px 10px;
-      margin-right: -4px;
+      padding: 6px 12px;
+      // margin-right: -4px;
       display: inline-block;
-      vertical-align: middle;
       border: 1px solid $theme-red-light;
       border-right-color: #ccc !important;
    }
@@ -28,10 +33,12 @@
       box-shadow: none;
       transition: none;
       padding: 6px 12px;
+      margin-left: -4px;
       margin-right: -4px;
       -o-transition: none;
       -webkit-box-shadow: none;
       -webkit-transition: none;
+      vertical-align: inherit !important;
       border-left: none !important;
       border-right: none !important;
       border: 1px solid $theme-red-light;
@@ -43,10 +50,9 @@
    }
    .headerSubmit {
      color: #fff;
-     padding: 7px 21px;
+     padding: 7px 30px;
    }
    .navbar-nav > li {
-      margin-bottom: -1px;
       border-bottom: 3px solid;
       border-bottom-color: transparent;
       transition: border .2s ease-out,color .2s ease-out;
@@ -69,7 +75,7 @@
                float: left;
                width: 32px;
                height: 32px;
-               margin-top: 3px;
+               margin-top: 2px;
                margin-right: 8px;
                border-radius: 50%;
                display: inline-block;
@@ -81,7 +87,7 @@
             .navbar-user-name{
                display: block;
                max-width: 60px;
-               padding: 9px 0px 7px;
+               padding: 7px 0px;
             }
          }
       }
@@ -191,14 +197,17 @@
       top: 8px;
       right: 1px;
    }
+   .lname-xs {
+      margin-left: 0% !important;
+   }
 }
 @media (min-width: 401px) and (max-width: 576px) {
    .m-header {
      width: 58% !important;
      > button.m-button-round {
-         width: 36px !important;
-         height: 36px !important;
-         margin-top: 8px !important;
+         width: 34px !important;
+         height: 34px !important;
+         margin-top: 9px !important;
          margin-right: 4% !important;
      }
    }
@@ -208,13 +217,10 @@
    .navbar {
       .navbar-toggle {
          float: left;
-         margin-top: 3px;
-         margin-left: 10px;
-         margin-right: 0px;
-         padding: 16px 12px;
-         margin-bottom: 3px;
+         border: none;
+         padding: 15px 11px;
          border-radius: 50%;
-         border: 0px solid transparent;
+         margin: 3px 0px 3px 10px;
          &:focus {
             outline: 0;
          }
@@ -232,20 +238,20 @@
       > {
          .m-city {
             float: left;
-            padding: 9px;
+            padding: 9.5px;
             cursor: pointer;
             font-size: 16px;
-            margin-top: 5px;
+            margin: 3px 0px;
             > .m-city-name {
-               padding: 2px;
+               padding-bottom: 1px;
                border-bottom: 1px dashed #636b6f;
             }
          }
          button.m-button-round {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             float: right;
-            margin-top: 6px;
+            margin-top: 3px;
             margin-right: 5%;
             border-radius: 50%;
             position: relative;
@@ -270,8 +276,9 @@
 }
 @media (min-width: 768px) {
    .navbar-nav > li > a {
-      padding-top: 15px;
-      padding-bottom: 13px;
+      padding-top: 14px;
+      margin-bottom: -2px;
+      padding-bottom: 14px;
    }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -316,9 +323,10 @@
       .navbar-collapse > form {
          padding-right: 20px;
       }
-      // .header-city-name {
-      //    margin-right: -3px;
-      // }
+      .form-control {
+         margin-left: -3px;
+         margin-right: -3px;
+      }
       .headerSubmit {
          padding: 7px 14px;
       }
@@ -331,10 +339,14 @@
          padding-right: 5px;
       }
      .navbar-collapse > form {
-         padding-right: 40px;
+         padding-right: 30px;
      }
      .form-control {
-         width: 280px !important;
+         width: 250px !important;
+     }
+     .navbar-nav > li > a {
+         padding-left: 12px !important;
+         padding-right: 12px !important;
      }
    }
 }
@@ -348,8 +360,8 @@
          padding: 0 !important;
       }
       .navbar-nav > li > a {
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 6px;
+        padding-right: 6px;
       }
    }
 }
@@ -367,7 +379,7 @@
          }
       }
       .form-control {
-         width: 400px !important;
+         width: 360px !important;
       }
       .navbar-nav > li > a {
          padding-left: 15px;

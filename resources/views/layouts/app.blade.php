@@ -78,15 +78,15 @@
                         <i class="fa fa-map-marker m-r-5"></i>Mumbai
                      </span>
                   </div>
-                  @if(Auth::guest())
+                  @if(!Auth::guest())
                      <button data-ripple="rgba(0,0,0,0.5)" class="m-button-round m-icon flatButton" data-toggle="modal" data-target="#searchModal">
                         <i class="fa fa-search"></i>
                      </button>
                   @else
-                     <button class="m-button-round m-user-image flatButton" data-toggle="modal"
-                      data-target="#searchModal" style="background-image: url({{ asset('images/userImage44.jpg') }});">
+                     <button class="m-button-round m-user-image flatButton" data-toggle="modal" data-target="#"
+                      style="background-image: url({{ asset('images/userImage44.jpg') }});"><!-- Data target wiil b added later -->
                      </button>
-                     <button data-ripple="rgba(0,0,0,0.5)" class="m-button-round m-icon flatButton" data-toggle="modal" data-target="#searchModal">
+                     <button data-ripple="rgba(0,0,0,0.5)" class="m-button-round m-icon flatButton" data-toggle="modal" data-target="#"><!-- Data target wiil b added later -->
                         <i class="fa fa-bell-o"></i>
                         <div class="notify-badge">20</div>
                      </button>
@@ -98,17 +98,17 @@
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse navbar-right" id="navCollapse">
                <form class="navbar-form navbar-left" role="search">
+                  <div data-ripple="rgba(0,0,0,0.5)" class="header-city-name" data-toggle="modal" data-target=".cityModal">
+                     <i class="fa fa-map-marker m-r-5"></i>Banglore
+                  </div>
                   <div class="form-group">
-                     <div data-ripple="rgba(0,0,0,0.5)" class="header-city-name" data-toggle="modal" data-target=".cityModal">
-                        <i class="fa fa-map-marker m-r-5"></i>Banglore
-                     </div>
                      <input type="text" class="form-control" placeholder="Search">
                   </div>
                   <button data-ripple type="submit" class="headerSubmit flatButton btn-red"><i class="fa fa-search"></i></button>
                </form>
                <ul class="nav navbar-nav">
                   <li><a  data-ripple="rgba(0,0,0,0.5)" href="#" class="" title="Add Free Listing"><i class="fa fa-plus-circle m-r-5"></i>Add Free Listing</a></li>
-                  @if(Auth::guest())
+                  @if(!Auth::guest())
                      <li><a data-ripple="rgba(0,0,0,0.5)" href="{{ route('login') }}"><i class="fa fa-sign-in m-r-5"></i>Login</a></li>
                      <li><a data-ripple="rgba(0,0,0,0.5)" href="{{ route('register') }}"><i class="fa fa-user-plus m-r-5"></i>Sign Up</a></li>
                   @else
@@ -176,7 +176,7 @@
    <div class="modal fade sideNav" id="sideNavModal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
          <div class="modal-content">
-            @if(Auth::guest())
+            @if(!Auth::guest())
                <div class="modal-header sideNav-header">
                   <button data-ripple="rgba(0,0,0,0.5)" type="button" class="close sideNav-close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
@@ -210,9 +210,9 @@
                   <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-th"></i>Browse Category</a>
                   <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-plus-circle"></i>Add Free Listing</a>
                   <div class="divider"></div>
-                  <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-heart"></i>Favourites</a>
-                  <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-bookmark"></i>Bookmarks</a>
-                  <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-comment"></i>Queries</a>
+                  <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-heart-o"></i>Favourites</a>
+                  <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-bookmark-o"></i>Bookmarks</a>
+                  <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-comment-o"></i>Queries</a>
                   <div class="divider"></div>
                   <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-envelope"></i>Feedback</a>
                   <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-sign-out"></i>Sign Out</a>
@@ -239,6 +239,7 @@
       </div>
    </div>
    <!--SideNav Modal Ends Here-->
+
    <!--City Modal Starts Here-->
    <div class="modal fade cityModal" id="m-city-modal" tabindex="-1" role="dialog" aria-labelledby="m-city-modal-label">
      <div class="modal-dialog" role="document">

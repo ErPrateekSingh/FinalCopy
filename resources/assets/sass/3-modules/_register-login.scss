@@ -1,0 +1,77 @@
+.panel {
+   box-shadow: none;
+   &.panel-form {
+      margin-top: 80px;
+      padding-top: 30px;
+      position: relative;
+      margin-bottom: 60px;
+      border-color: $theme-red-dark;
+      .help-block {
+         font-size: 12px;
+         font-weight: 500;
+         margin-bottom: 0px;
+      }
+      .form-horizontal .has-feedback .form-control-feedback {
+         right: 0px !important;
+      }
+      .has-feedback label ~ .form-control-feedback {
+         top: 5px !important;
+      }
+   }
+   .panel-circle {
+      top: -50px;
+      z-index: 10;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      text-align: center;
+      border-radius: 50%;
+      left: calc(50% - 50px);
+      background-color: #fff;
+      color: $theme-red-light;
+      border: 1px solid $theme-red-dark;
+      i {
+         display: block;
+         font-size: 36px;
+         margin-top: 15px;
+      }
+      span {
+         display: block;
+         font-size: 18px;
+         margin-top: 3px;
+      }
+   }
+   .form-bg-btn {
+      color: #fff;
+      width: 90%;
+      margin: 0 5% 20px;
+      outline: 0 !important;
+      outline-offset: 0 !important;
+   }
+   .fname-xs, .lname-xs {
+      display: inline-block;
+   }
+}
+@media (max-width: 400px) {}
+@media (min-width: 401px) and (max-width: 576px) {}
+@media (max-width: 576px) {
+   .fname-xs, .lname-xs {
+      width: 100% !important;
+   }
+   .lname-xs {
+      margin-left: 0% !important;
+   }
+}
+@media (min-width: 577px) and (max-width: 767px) {}
+@media (max-width: 767px) {}
+@media (min-width: 768px) {}
+@media (min-width: 768px) and (max-width: 991px) {}
+@media (min-width: 992px) and (max-width: 1199px) {}
+@media (min-width: 768px) and (max-width: 1199px) {}
+@media (min-width: 1200px) {
+   .panel {
+      &.panel-form {
+
+      }
+   }
+}
