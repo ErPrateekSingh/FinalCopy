@@ -42,8 +42,8 @@
       }
    }
    .form-bg-btn {
-      color: #fff;
       width: 90%;
+      color: #fff;
       margin: 0 5% 20px;
       outline: 0 !important;
       outline-offset: 0 !important;
@@ -51,7 +51,82 @@
    .fname-xs, .lname-xs {
       display: inline-block;
    }
+   #regForm {
+      width: 80%;
+      min-width: 300px;
+      margin: 30px auto;
+
+   }
 }
+.reg-progress {
+   width: 100%;
+   display: block;
+   margin-top: 90px;
+   margin-bottom: 50px;
+   padding-left: 10%;
+   padding-right: 10%;
+   .reg-bar-box {
+      float: left;
+      z-index: 10;
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      border-radius: 50%;
+      margin: -50px auto 0px;
+      background-color: #fff;
+      color: $theme-red-light;
+      border: 1px solid $theme-red-dark;
+      i {
+         display: block;
+         font-size: 24px;
+         margin-top: 24px;
+      }
+      span {
+         display: block;
+         font-size: 16px;
+         margin-top: 4px;
+         font-weight: 500;
+      }
+   }
+   .reg-bar {
+      float: left;
+      height: 1px;
+      z-index: -1;
+      display: inline-block;
+      width: calc(50% - 150px);
+      background-color: $theme-red-dark;
+   }
+   .animAdd {
+      position: relative;
+      animation: barMove 2s;
+      -webkit-animation: barMove 2s;
+      animation-timing-function: linear;
+      background-color: green !important;
+      -webkit-animation-timing-function: linear;
+   }
+   /* Safari 4.0 - 8.0 */
+   @-webkit-keyframes barMove { from {width: 0%;} to {width: 100%;} }
+   /* Standard syntax */
+   @keyframes barMove { from {width: 0%;} to {width: 100%;} }
+}
+// /* Animation Property */
+// .collapseDiv{
+//    position: relative;
+//    animation: divCollapse 2s;
+//    -webkit-animation: divCollapse 2s;
+//    animation-timing-function: linear;
+//    -webkit-animation-timing-function: linear;
+// }
+// .unCollapseDiv{
+//
+// }
+// /* Safari 4.0 - 8.0 */
+// @-webkit-keyframes divCollapse { from {height: 100%;} to {height: 0px;} }
+// @-webkit-keyframes divUnCollapse { from {width: 0%;} to {width: 100%;} }
+// /* Standard syntax */
+// @keyframes divCollapse { from {height: 100%;} to {height: 0px;} }
+// @keyframes divUnCollapse { from {width: 0%;} to {width: 100%;} }
+
 @media (max-width: 400px) {}
 @media (min-width: 401px) and (max-width: 576px) {}
 @media (max-width: 576px) {

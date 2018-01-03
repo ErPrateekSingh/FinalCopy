@@ -57,6 +57,29 @@ function Validate(idName,type){
             field_success(idName);
             return true;
          }
+      } else if(type == 'password'){
+         if (id.length >= 6) {
+            if (!id.match(/^[a-zA-Z0-9]+$/)) {
+               $("#error_"+idName).text("Only alphabets and numbers are allowed!");
+               field_error(idName);
+               return false;
+            } else {
+               if (idName == 'password-confirm') {
+                  if ($("#password-confirm").val() != $("#password").val()) {
+                     $("#error_"+idName).text("Passwords not matched!");
+                     field_error(idName);
+                     return false;
+                  }
+               }
+               $("#error_"+idName).text("");
+               field_success(idName);
+               return true;
+            }
+         } else {
+            $("#error_"+idName).text("Min. 6 characters Allowed!");
+            field_error(idName);
+            return false;
+         }
       } else if (type == "email") {
          if(!id.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/)) {
             $("#error_"+idName).text("Enter a valid Email Address!");
@@ -72,12 +95,21 @@ function Validate(idName,type){
 }
 // Code to validate form fields ENDS
 
-// Code for indivadual fields STARTS
+// Code for indivadual Register fields STARTS
 $('#fname').focusout(function(){Validate('fname','a-s-only');});
 $('#lname').focusout(function(){Validate('lname','a-s-only');});
 $('#email').focusout(function(){Validate('email','email');});
-$('#password').focusout(function(){Validate('password','a-s-only');});
-// Code for indivadual fields ENDS
+$('#password').focusout(function(){Validate('password','password');});
+$('#password-confirm').focusout(function(){Validate('password-confirm','password');});
+// Code for indivadual Register fields ENDS
+
+//Code for Register Form Submit STARTS
+$('#registerForm').on('submit', function(e){
+   if(!(Validate('fname','a-s-only') && Validate('lname','a-s-only') && Validate('email','email') && Validate('password','password') && Validate('password-confirm','password'))) {
+     e.preventDefault();
+   }
+});
+//Code for Register Form Submit ENDS
 
 // const app = new Vue({
 //     el: '#app'

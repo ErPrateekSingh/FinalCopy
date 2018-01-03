@@ -10,7 +10,7 @@
                <span style="margin-left: 5px;">SIGN-UP</span>
             </div>
             <div class="panel-body">
-               <form class="form-horizontal clearfix" method="POST" action="{{ route('register') }}">
+               <form id="registerForm" class="form-horizontal clearfix" method="POST" action="{{ route('register') }}">
                   {{ csrf_field() }}
                   <div class="col-xs-10 col-xs-offset-1">
                      <div class="row">
@@ -61,10 +61,11 @@
                      <div class="form-group form-group-mat">
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off" spellcheck="false">
                         <label for="password-confirm" class="control-label"><i class="fa fa-lock m-r-5"></i> Confirm Password</label><i class="bar"></i>
+                        <div id="error_password-confirm" class=""></div>
                      </div>
 
                      <div class="form-group form-group-mat" style="text-align:center;">
-                        <button type="submit" class="btn btn-primary" data-ripple="rgba(255,255,255,0.5)" style="width:40%; margin-top: 20px;">
+                        <button type="submit" onclick="validateRegister()" class="btn btn-primary" data-ripple="rgba(255,255,255,0.5)" style="width:40%; margin-top: 20px;">
                            Register
                         </button>
                      </div>

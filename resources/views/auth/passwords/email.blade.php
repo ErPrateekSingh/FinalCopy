@@ -33,6 +33,9 @@
                            Send Password Reset Link
                         </button>
                      </div>
+                     <span style="display: block;text-align: center;margin-top: 20px;">
+                        <a href="{{ route('login') }}"><i class="fa fa-caret-left m-r-5"></i>Back to Log in</a>
+                     </span>
                   </div>
                </form>
             </div>
