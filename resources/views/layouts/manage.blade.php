@@ -8,7 +8,7 @@
    <!-- CSRF Token -->
    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-   <title>{{ config('app.name', 'Zendur') }}</title>
+   <title>Zendur - Management</title>
 
    <meta name="description" content=""><!--To be added Later-->
    <meta name="keywords" content=""><!--To be added Later-->
@@ -47,16 +47,6 @@
    <meta name="apple-mobile-web-app-status-bar-style" content="default"><!--To be checked and modify Later-->
    <link href="{{ asset('css/app.css') }}" rel="stylesheet"><!--Laravel's stylesheet-->
    @yield('styles')
-   <!-- /*<style>
-      @media (max-width: 577px) {
-         .m-header .m-search {display: none !important;}
-         .m-header .m-city {float: right;margin-right: 15px;}
-      }
-      @media (min-width: 576px) {
-         .m-header {display: none;}
-      }
-      /*form.navbar-form.navbar-left {display: none !important;}*/
-   </style>*/ -->
 </head>
 <!-- Update your html tag to include the itemscope and itemtype attributes. -->
 <body itemscope itemtype="http://schema.org/WebPage">

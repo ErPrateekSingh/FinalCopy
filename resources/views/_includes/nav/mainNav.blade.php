@@ -1,0 +1,104 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+   <div class="container-fluid">
+      <div class="navbar-header">
+         <button data-ripple="rgba(0,0,0,0.5)" type="button" class="navbar-toggle" data-toggle="modal" data-target="#sideNavModal">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="{{ url('/') }}">
+            {{ config('app.name', 'Zendur<!--Laravel-->') }}
+         </a>
+         <div class="m-header">
+            <div data-ripple="rgba(0,0,0,0.5)" class="m-city" data-toggle="modal" data-target=".cityModal">
+               <span class="m-city-name">
+                  <i class="fa fa-map-marker m-r-5"></i>Mumbai
+               </span>
+            </div>
+            @if(Auth::guest())
+               <button data-ripple="rgba(0,0,0,0.5)" class="m-button-round m-icon flatButton" data-toggle="modal" data-target="#searchModal">
+                  <i class="fa fa-search"></i>
+               </button>
+            @else
+               <button class="m-button-round m-user-image flatButton" data-toggle="modal" data-target="#"
+                style="background-image: url({{ asset('images/userImage44.jpg') }});"><!-- Data target wiil b added later -->
+               </button>
+               <button data-ripple="rgba(0,0,0,0.5)" class="m-button-round m-icon flatButton" data-toggle="modal" data-target="#"><!-- Data target wiil b added later -->
+                  <i class="fa fa-bell-o"></i>
+                  <div class="notify-badge">20</div>
+               </button>
+               <button data-ripple="rgba(0,0,0,0.5)" class="m-button-round m-icon flatButton" data-toggle="modal" data-target="#searchModal">
+                  <i class="fa fa-search"></i>
+               </button>
+            @endif
+         </div>
+      </div>
+      <div class="navbar-collapse collapse navbar-responsive-collapse navbar-right" id="navCollapse">
+         <form class="navbar-form navbar-left" role="search">
+            <div data-ripple="rgba(0,0,0,0.5)" class="header-city-name" data-toggle="modal" data-target=".cityModal">
+               <i class="fa fa-map-marker m-r-5"></i>Banglore
+            </div>
+            <div class="form-group">
+               <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button data-ripple type="submit" class="headerSubmit flatButton btn-red"><i class="fa fa-search"></i></button>
+         </form>
+         <ul class="nav navbar-nav">
+            <li><a  data-ripple="rgba(0,0,0,0.5)" href="#" class="" title="Add Free Listing"><i class="fa fa-plus-circle m-r-5"></i>Add Free Listing</a></li>
+            @if(Auth::guest())
+               <li><a data-ripple="rgba(0,0,0,0.5)" href="{{ route('login') }}"><i class="fa fa-sign-in m-r-5"></i>Login</a></li>
+               <li><a data-ripple="rgba(0,0,0,0.5)" href="{{ route('register') }}"><i class="fa fa-user-plus m-r-5"></i>Sign Up</a></li>
+            @else
+               <li class="dropdown dd-notification">
+                  <a href="#" class="btn dropdown-toggle bell" type="button" data-toggle="dropdown" aria-expanded="false" title="20 Notifications">
+                     <i class="fa fa-bell-o m-r-5"></i>
+                     <span>Notifications</span>
+                     <div class="notify-badge">20</div>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                     <div class="dd-menu-header">
+                        Notifications
+                     </div>
+                     <div class="dd-menu-body">
+                        <!--Notification Body Goes Here-->
+                     </div>
+                     <div align="center" class="dd-menu-footer">
+                        <a href="#">See All Notifications</a>
+                     </div>
+
+                     <div class="dropdown-arrow-1"></div>
+                     <div class="dropdown-arrow-2"></div>
+                  </ul>
+               </li>
+               <li class="dropdown dd-user m-l-10">
+                  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" title="Prateek Singh&#013;(Hanuman Mandir Store)">
+                     <span class="navbar-user-image" style="background-image: url({{ asset('images/userImage44.jpg') }});"></span>
+                     <span class="navbar-user-name text-trim"> Prateek<!--/*{/*{ Auth::user()->name }*/}*/--></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                     <div class="dd-menu-body">
+                        <div align="center" class="dd-menu-image"><img src="{{ asset('images/userImage100.jpg') }}" alt="User Image"></div>
+                        <div class="dd-menu-name text-trim">Prateek Singh</div>
+                        <div class="dd-menu-city text-trim">Allahabad, Uttar Pradesh, India</div>
+                     </div>
+                     <div class="dd-menu-footer clearfix">
+                        <button data-ripple class="btn btn-red pull-left" href="#">Profile</button>
+                        <button data-ripple="rgba(0,0,0,0.5)" class="btn btn-default pull-right" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                              Sign Out
+                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              {{ csrf_field() }}
+                           </form>
+                        </button>
+                     </div>
+                     <div class="dropdown-arrow-1"></div>
+                     <div class="dropdown-arrow-2"></div>
+                  </ul>
+               </li>
+            @endif
+         </ul>
+      </div>
+   </div>
+</nav>

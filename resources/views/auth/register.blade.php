@@ -10,7 +10,7 @@
                <span style="margin-left: 5px;">SIGN-UP</span>
             </div>
             <div class="panel-body">
-               <form id="registerForm" class="form-horizontal clearfix" method="POST" action="{{ route('register') }}">
+               <form id="registerForm" class="form-horizontal clearfix" method="POST" action="{{ route('register') }}" role="form">
                   {{ csrf_field() }}
                   <div class="col-xs-10 col-xs-offset-1">
                      <div class="row">
