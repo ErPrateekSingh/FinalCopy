@@ -81,7 +81,7 @@ fieldset {
 .form-radio,
 .form-group-mat {
 	position: relative;
-	margin-top: 30px;
+	margin-top: 40px;
 	margin-bottom: 0px;
 }
 
@@ -128,13 +128,15 @@ fieldset {
 	}
 
 	select {
-		width: 100%;
-		font-size: $mf-font-size;
-		height: ($mf-font-size * 1.6);
-		padding: $mf-spacer $mf-spacer ($mf-spacer / 2);
+		// width: 100%;
+		// font-size: $mf-font-size;
+		// height: ($mf-font-size * 1.6);
+		// padding: $mf-spacer $mf-spacer ($mf-spacer / 2);
+		padding-top: 16px;
+		padding-bottom: 1px;
 		background: none;
 		border: none;
-		line-height: 1.6;
+		// line-height: 1.6;
 		box-shadow: none;
 	}
 
@@ -170,7 +172,8 @@ fieldset {
 	}
 
 	input,
-	textarea {
+	textarea,
+	select {
 		// display: block;
 		background: none;
 		// padding: $mf-spacer $mf-spacer ($mf-spacer / 2);

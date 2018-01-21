@@ -11899,7 +11899,7 @@ fieldset {
 .form-radio,
 .form-group-mat {
   position: relative;
-  margin-top: 30px;
+  margin-top: 40px;
   margin-bottom: 0px;
 }
 
@@ -11938,13 +11938,10 @@ fieldset {
 }
 
 .form-group-mat select {
-  width: 100%;
-  font-size: 14px;
-  height: 22.4px;
-  padding: 1.75px 1.75px 0.875px;
+  padding-top: 16px;
+  padding-bottom: 1px;
   background: none;
   border: none;
-  line-height: 1.6;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -11983,7 +11980,8 @@ fieldset {
 }
 
 .form-group-mat input,
-.form-group-mat textarea {
+.form-group-mat textarea,
+.form-group-mat select {
   background: none;
   border-width: 0;
   border-color: transparent;
@@ -12329,10 +12327,10 @@ fieldset {
   color: #f00;
   display: block;
   font-size: 12px;
-  margin-top: 5px;
+  margin-top: 4px;
   line-height: 1;
   font-weight: 500;
-  margin-bottom: -10px;
+  margin-bottom: -16px;
 }
 
 .fb-bg {
@@ -12500,6 +12498,54 @@ div::-webkit-scrollbar-thumb:active {
 .modal#searchModal .modal-content {
   border: 0px;
   border-radius: 0px;
+}
+
+.ui-widget {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.ui-corner-all {
+  border-radius: 0px !important;
+}
+
+.ui-datepicker {
+  margin-top: 2px;
+  width: 20em !important;
+  z-index: 10 !important;
+}
+
+.ui-datepicker .ui-datepicker-header {
+  margin: -0.2em -0.2em 0;
+  padding: 0.5em 0 !important;
+}
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+  display: none !important;
+}
+
+.ui-datepicker .ui-datepicker-title {
+  margin: 0px !important;
+}
+
+.ui-datepicker .ui-datepicker-title select {
+  font-size: 1.1em !important;
+  margin: 1px 1% !important;
+}
+
+.ui-datepicker td {
+  padding: 5px !important;
+}
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+  text-align: center !important;
+}
+
+.ui-widget-header {
+  border-left: 0px !important;
+  border-right: 0px !important;
+  border-top: 0px !important;
 }
 
 .navbar {

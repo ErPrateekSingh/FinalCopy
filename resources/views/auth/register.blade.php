@@ -13,29 +13,23 @@
                <form id="registerForm" class="form-horizontal clearfix" method="POST" action="{{ route('register') }}" role="form">
                   {{ csrf_field() }}
                   <div class="col-xs-10 col-xs-offset-1">
-                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 fname-xs">
-                           <div class="form-group form-group-mat{{ $errors->has('fname') ? ' has-error' : '' }}">
-                              <input id="fname" type="text" class="form-control" name="fname" value="{{ old('fname') }}" required autocomplete="off" spellcheck="false">
-                              <label for="fname" class="control-label"><i class="fa fa-user m-r-5"></i> First Name</label><i class="bar"></i>
-                              <div id="error_fname" class=""></div>
+                     <div class="form-group form-group-mat{{ $errors->has('fname') ? ' has-error' : '' }}">
+                        <input id="fname" type="text" class="form-control" name="fname" value="{{ old('fname') }}" required autocomplete="off" spellcheck="false">
+                        <label for="fname" class="control-label"><i class="fa fa-user m-r-5"></i> First Name</label><i class="bar"></i>
+                        <div id="error_fname" class=""></div>
 
-                              @if ($errors->has('fname'))
-                              <span class="help-block"> {{ $errors->first('fname') }} </span>
-                              @endif
-                           </div>
-                        </div>
-                        <div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1 lname-xs">
-                           <div class="form-group form-group-mat{{ $errors->has('lname') ? ' has-error' : '' }}">
-                              <input id="lname" type="text" class="form-control" name="lname" value="{{ old('lname') }}" required autocomplete="off" spellcheck="false">
-                              <label for="lname" class="control-label"><i class="fa fa-user m-r-5"></i> Last Name</label><i class="bar"></i>
-                              <div id="error_lname" class=""></div>
+                        @if ($errors->has('fname'))
+                        <span class="help-block"> {{ $errors->first('fname') }} </span>
+                        @endif
+                     </div>
+                     <div class="form-group form-group-mat{{ $errors->has('lname') ? ' has-error' : '' }}">
+                        <input id="lname" type="text" class="form-control" name="lname" value="{{ old('lname') }}" required autocomplete="off" spellcheck="false">
+                        <label for="lname" class="control-label"><i class="fa fa-user m-r-5"></i> Last Name</label><i class="bar"></i>
+                        <div id="error_lname" class=""></div>
 
-                              @if ($errors->has('lname'))
-                              <span class="help-block"> {{ $errors->first('lname') }} </span>
-                              @endif
-                           </div>
-                        </div>
+                        @if ($errors->has('lname'))
+                        <span class="help-block"> {{ $errors->first('lname') }} </span>
+                        @endif
                      </div>
 
                      <div class="form-group form-group-mat{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -49,19 +43,14 @@
                      </div>
 
                      <div class="form-group form-group-mat{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <input id="password" type="password" class="form-control" name="password" required autocomplete="off" spellcheck="false">
+                        <input id="password" type="password" class="form-control" name="password" style="padding-right: 60px !important;" required autocomplete="off" spellcheck="false">
+                        <span title="Show Password" class="fa fa-eye-slash" style="top: 9px;right: 0px;color: #777;padding: 5px;cursor: pointer;position: absolute;font-size: 18px;"></span>
                         <label for="password" class="control-label"><i class="fa fa-lock m-r-5"></i> Password</label><i class="bar"></i>
                         <div id="error_password" class=""></div>
 
                         @if ($errors->has('password'))
                         <span class="help-block"> {{ $errors->first('password') }} </span>
                         @endif
-                     </div>
-
-                     <div class="form-group form-group-mat">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off" spellcheck="false">
-                        <label for="password-confirm" class="control-label"><i class="fa fa-lock m-r-5"></i> Confirm Password</label><i class="bar"></i>
-                        <div id="error_password-confirm" class=""></div>
                      </div>
 
                      <div class="form-group form-group-mat" style="text-align:center;">
@@ -98,4 +87,122 @@
       </div>
    </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+$(document).ready(function(){
+   // Code to show password button STARTS
+   $(".fa-eye-slash")
+		.mousedown(function(){ $("#password").attr('type','text'); $(this).attr('class','fa fa-eye'); })
+		.on("mouseup mouseout", function(){ $("#password").attr('type','password'); $(this).attr('class','fa fa-eye-slash'); });
+
+   // Code to validate form fields STARTS
+   function field_error(id){
+      $('#error_'+id).attr('class', 'error');
+      var div = $("#"+id).closest("div");
+      div.removeClass("has-success");
+      div.addClass("has-error has-feedback");
+      $("#glyphcn"+id).remove();
+      if(id=="password"){
+         div.append('<span id="glyphcn'+id+'" style="right: 20px !important;" class="glyphicon glyphicon-remove form-control-feedback"></span>');
+      } else {
+         div.append('<span id="glyphcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>');
+      }
+   }
+   function field_success(id){
+      $('#error_'+id).attr('class', '');
+      $('#error_'+id).text('');
+      var div = $("#"+id).closest("div");
+      div.removeClass("has-error");
+      div.addClass("has-success has-feedback");
+      $("#glyphcn"+id).remove();
+      if(id=="password"){
+         div.append('<span id="glyphcn'+id+'" style="right: 20px !important;" class="glyphicon glyphicon-ok form-control-feedback"></span>');
+      } else {
+         div.append('<span id="glyphcn'+id+'" class="glyphicon glyphicon-ok form-control-feedback"></span>');
+      }
+   }
+   function Validate(idName,type){
+      var id = $("#"+idName).val();
+      if(id==null||id=="") {
+         $("#error_"+idName).text("This field is Required!");
+         field_error(idName);
+         return false;
+      }else{
+         if(type == 'a-s-only'){
+            if (!id.match(/^[a-zA-Z ]+$/)) {
+               $("#error_"+idName).text("Only alphabets and spaces are allowed!");
+               field_error(idName);
+               return false;
+            } else {
+               $("#error_"+idName).text("");
+               field_success(idName);
+               return true;
+            }
+         } else if(type == 'password'){
+            if (id.length >= 6) {
+               if (!id.match(/^[a-zA-Z0-9]+$/)) {
+                  $("#error_"+idName).text("Only alphabets and numbers are allowed!");
+                  field_error(idName);
+                  return false;
+               } else {
+                  $("#error_"+idName).text("");
+                  field_success(idName);
+                  return true;
+               }
+            } else {
+               $("#error_"+idName).text("Min. 6 characters Allowed!");
+               field_error(idName);
+               return false;
+            }
+         } else if (type == "email") {
+            if(!id.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/)) {
+               $("#error_"+idName).text("Enter a valid Email Address!");
+               field_error(idName);
+               return false;
+            } else {
+               $("#error_"+idName).text("");
+               // field_success(idName);
+               return true;
+            }
+         }
+      }
+   }
+   $('#email').on('blur', function(e){
+      e.preventDefault();
+      $("#glyphcnemail").remove();
+      if(Validate('email','email')) {
+         $("#email").closest("div").append('<span id="glyphcnemail" style="font-size: 16px;color: #f4545f;width: 16px;position: absolute;height: 16px;top: 16px;right: 10px;z-index: 2;text-align: center;pointer-events: none;" class="fa fa-refresh fa-spin"></span>');
+         var email = $("input[name='email']").val();
+         $.ajax({
+            type:'get',
+            url: "/email/unique",
+            data: {'email': email},
+            contentType: 'application/json',
+            success: function(data) {
+               if (data=="true") {
+                  field_success("email");
+               } else {
+                  $("#error_email").text("This Email aready Exists!");
+                  field_error("email");
+               }
+            }
+         });
+      }
+   });
+
+   // Code for indivadual Register fields STARTS
+   $('#fname').focusout(function(){Validate('fname','a-s-only');});
+   $('#lname').focusout(function(){Validate('lname','a-s-only');});
+   $('#password').focusout(function(){Validate('password','password');});
+
+   //Code for Register Form Submit STARTS
+   $('#registerForm').on('submit', function(e){
+      if(!(Validate('fname','a-s-only') && Validate('lname','a-s-only') && Validate('email','email') && Validate('password','password'))) {
+        e.preventDefault();
+      }
+   });
+});
+</script>
 @endsection

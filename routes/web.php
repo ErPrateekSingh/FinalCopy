@@ -24,5 +24,14 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|edito
    Route::get('/dashboard', 'ManageController@dashboard')->name('manage.dashboard');
 });
 
+/* Route to fill in the user details after redirected from the register page
+/ no default permission hence showing error, will update and add this later
+/Route::get('/user/details', 'RegistrationController@showRegisterUserDetailsForm')->middleware('role:superadministrator|administrator|editor|member|subscriber')->name('user.details');
+*/
+Route::get('/user/details', 'RegistrationController@showRegisterUserDetailsForm')->name('user.details');
+
+/* Route to check if email is unique through ajax request on register page*/
+Route::get('/email/unique ', 'RegistrationController@checkUniqueEmail')->name('email.unique');
+
 Route::get('/registration', 'RegistrationController@showRegistrationForm')->name('registration');
 Route::get('/home', 'HomeController@index')->name('home');
