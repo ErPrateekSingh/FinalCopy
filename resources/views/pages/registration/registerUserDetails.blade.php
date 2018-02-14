@@ -1,146 +1,58 @@
 @extends('layouts.app')
 
 @section('styles')
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+   .tabHeader{font-size: 24px;}
+   .tabWrapper {width: 100%;}
+   .tabButton{float: right;border: none;color: #ffffff;font-size: 18px;margin-top: 60px;padding: 8px 40px;margin-bottom: 20px;background-color: #4CAF50;}
+   .tabButton:hover {opacity: 0.8;}
+   .form-group-mat {margin-top: 60px;}
+   select:required:invalid {color: gray;}
+   option[value=""][disabled] {display: none;}
+   option {color: black;}
+</style>
 @endsection
 
 @section('content')
-<style>
-/* Hide all steps by default: */
-.tab {
-   width: 100%;
-   display: none;
-   min-height: 350px;
-   position: relative;
-}
-.tabHead{
-   font-size: 24px;
-   margin-bottom: 10px;
-}
-.form-radio, .form-group-mat {
-    margin-top: 60px;
-}
-.categoryName, .subCategoryName {
-   font-size: 18px;
-   margin-top: 7px;
-   font-weight: 500;
-   text-align: center;
-}
-.changeCategory, .changeSubCategory {
-    float: right;
-    color: #3097D1;
-    font-size: 14px;
-    margin-top: 11px;
-    margin-right: 10px;
-    text-decoration: none;
-}
-.changeCategory:hover, .changeSubCategory:hover {
-   color: #216a94;
-   cursor: pointer;
-   text-decoration: underline;
-}
-.tabWrapper {
-   width: 100%;
-}
-.categoryBox, .subCategoryBox {
-   margin: 1%;
-   cursor: pointer;
-   font-size: 14px;
-   line-height: 0.9;
-   border: 1px solid;
-   padding: 11px 15px;
-   border-color: #ccc;
-   display: inline-block;
-   width: calc(23% - 3px);
-}
-.categoryBox:hover, .subCategoryBox:hover {
-   color: #555;
-   border-color: rgba(244, 84, 95, 0.6);
-   background-color: rgba(244, 84, 95, 0.25);
-}
-.subCatSelected, .subCatSelected:hover {
-   color: #444;
-   border-color: rgba(0, 131, 0, 0.6);
-   background-color: rgba(0, 131, 0, 0.25);
-}
-.subCatFade {
-   opacity: 0.5;
-}
-
-#nextBtn {
-   background-color: #4CAF50;
-   color: #ffffff;
-   border: none;
-   padding: 10px 20px;
-   font-size: 16px;
-}
-/*button {
-   background-color: #4CAF50;
-   color: #ffffff;
-   border: none;
-   padding: 10px 20px;
-   font-size: 17px;
-   font-family: Raleway;
-   cursor: pointer;
-}*/
-
-button:hover {
-   opacity: 0.8;
-}
-
-#prevBtn {
-   background-color: #bbbbbb;
-}
-
-/* Make circles that indicate the steps of the form: */
-.step {
-   height: 15px;
-   width: 15px;
-   margin: 0 2px;
-   background-color: #bbbbbb;
-   border: none;
-   border-radius: 50%;
-   display: inline-block;
-   opacity: 0.5;
-}
-
-.step.active {
-   opacity: 1;
-}
-
-/* Mark the steps that are finished and valid: */
-.step.finish {
-   background-color: #4CAF50;
-}
-</style>
 <div class="container">
    <div class="row">
       <div class="col-md-10 col-md-offset-1 col-xs-12">
          <div class="panel panel-form clearfix" style="margin-top: 50px;border-color: #ccc;">
             <div class="panel-body">
                <div class="col-xs-10 col-xs-offset-1">
-                  <form id="#" class="form-horizontal clearfix" action="#" method="POST" role="form">
-                     <!-- One "tab" for each step in the form: -->
-                     <div class="tab">
-                        <div class="tabHead">User Details :</div>
-                        <hr>
-                        <div class="tabWrapper clearfix">
-                           <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 fname-xs">
-                              <div class="form-group form-group-mat{{ $errors->has('dob') ? ' has-error' : '' }}">
-                                 <input id="dob" type="text" class="form-control" name="dob" value="{{ old('dob') }}" required autocomplete="off" spellcheck="false">
-                                 <label for="dob" class="control-label"><i class="fa fa-calendar m-r-5"></i> Date of Birth</label><i class="bar"></i>
-                                 <div id="error_dob" class=""></div>
-                                 @if ($errors->has('dob'))
-                                 <span class="help-block"> {{ $errors->first('dob') }} </span>
-                                 @endif
-                              </div>
+                  <form id="registerUserDetails" class="form-horizontal clearfix" method="POST" action="{{ route('register.user.details') }}" role="form" novalidate>
+                     {{ csrf_field() }}
+                     <div class="tabHeader">User Details :</div>
+                     <div class="tabWrapper clearfix">
+                        <div class="col-xs-12">
+                           <div class="form-group form-group-mat{{ $errors->has('username') ? ' has-error' : '' }}">
+                              <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autocomplete="off" spellcheck="false">
+                              <label for="username" class="control-label"><i class="fa fa-user m-r-5"></i> Username</label><i class="bar"></i>
+                              <div id="error_username" class=""></div>
+                              @if ($errors->has('username'))
+                              <span class="help-block"> {{ $errors->first('username') }} </span>
+                              @endif
                            </div>
-                           <div class="col-lg-5 col-lg-offset-2 col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2 col-xs-5 col-xs-offset-2 lname-xs">
+                        </div>
+                        <div class="col-xs-12">
+                           <div class="row">
+                              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 fname-xs">
+                                 <div class="form-group form-group-mat{{ $errors->has('dob') ? ' has-error' : '' }}">
+                                    <input id="dob" type="text" class="form-control" name="dob" value="{{ old('dob') }}" required autocomplete="off" spellcheck="false">
+                                    <label for="dob" class="control-label"><i class="fa fa-calendar m-r-5"></i> Date of Birth</label><i class="bar"></i>
+                                    <div id="error_dob" class=""></div>
+                                    @if ($errors->has('dob'))
+                                    <span class="help-block"> {{ $errors->first('dob') }} </span>
+                                    @endif
+                                 </div>
+                              </div>
+                              <div class="col-lg-5 col-lg-offset-2 col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2 col-xs-5 col-xs-offset-2 lname-xs">
                               <div class="form-group form-group-mat{{ $errors->has('gender') ? ' has-error' : '' }}">
                                  <select class="form-control" id="gender" name="gender">
-                                    <option value="">Select Gender</option>
-                                    <option value="female">Female</option>
-                                    <option value="male">Male</option>
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="f" @if(old('gender') == 'f')selected="selected"@endif>Female</option>
+                                    <option value="m" @if(old('gender') == 'm')selected="selected"@endif>Male</option>
                                  </select>
                                  <label for="gender" class="control-label"><i class="fa fa-road m-r-5"></i> Gender</label><i class="bar"></i>
                                  <div id="error_gender" class=""></div>
@@ -149,26 +61,30 @@ button:hover {
                                  @endif
                               </div>
                            </div>
-                           <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 fname-xs">
-                              <div class="form-group form-group-mat{{ $errors->has('state') ? ' has-error' : '' }}">
-                                 <select class="form-control" id="state" name="state">
-                                    <option value="">Select State</option>
-                                    <option value="H">Harayana</option>
-                                    <option value="U">Uttar Pradesh</option>
-                                 </select>
-                                 <label for="state" class="control-label"><i class="fa fa-map m-r-5"></i> State</label><i class="bar"></i>
-                                 <div id="error_state" class=""></div>
-                                 @if ($errors->has('state'))
-                                 <span class="help-block"> {{ $errors->first('state') }} </span>
-                                 @endif
-                              </div>
                            </div>
-                           <div class="col-lg-5 col-lg-offset-2 col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2 col-xs-5 col-xs-offset-2 lname-xs">
+                        </div>
+                        <div class="col-xs-12">
+                           <div class="row">
+                              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 fname-xs">
+                                 <div class="form-group form-group-mat{{ $errors->has('state') ? ' has-error' : '' }}">
+                                    <select class="form-control" id="state" name="state">
+                                       <option value="" disabled selected>Select State</option>
+                                       @foreach($states as $states)
+                                          <option value="{{ $states->state_id }}" {{ (collect(old('state'))->contains($states->state_id)) ? 'selected':'' }}>{{ $states->state_name }}</option>
+                                       @endforeach
+                                    </select>
+                                    <label for="state" class="control-label"><i class="fa fa-map m-r-5"></i> State</label><i class="bar"></i>
+                                    <div id="error_state" class=""></div>
+                                    @if ($errors->has('state'))
+                                    <span class="help-block"> {{ $errors->first('state') }} </span>
+                                    @endif
+                                 </div>
+                              </div>
+                              <div class="col-lg-5 col-lg-offset-2 col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2 col-xs-5 col-xs-offset-2 lname-xs">
                               <div class="form-group form-group-mat{{ $errors->has('city') ? ' has-error' : '' }}">
                                  <select class="form-control" id="city" name="city">
-                                    <option value="">Select City</option>
-                                    <option value="A">Allahabad</option>
-                                    <option value="N">New Delhi</option>
+                                    <option value="" disabled selected>Select City</option>
+                                    <option disabled>Please select state first !</option>
                                  </select>
                                  <label for="city" class="control-label"><i class="fa fa-map-marker m-r-5"></i> City</label><i class="bar"></i>
                                  <div id="error_city" class=""></div>
@@ -177,26 +93,10 @@ button:hover {
                                  @endif
                               </div>
                            </div>
+                           </div>
                         </div>
                      </div>
-                     <div class="tab">
-                        <div class="tabHead">User Profile Image :</div>
-                        <hr>
-                        <div class="tabWrapper clearfix">
-                           
-                        </div>
-                     </div>
-                     <div style="overflow:auto;">
-                        <div style="float:right;">
-                           <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                           <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                        </div>
-                     </div>
-                     <!-- Circles which indicates the steps of the form: -->
-                     <div style="text-align:center;margin-top:40px;">
-                        <span class="step"></span>
-                        <span class="step"></span>
-                     </div>
+                     <button type="submit" class="tabButton">Next</button>
                   </form>
                </div>
             </div>
@@ -207,145 +107,110 @@ button:hover {
 @endsection
 
 @section('scripts')
-   <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   <script>
-   $( function() {
-      $( "#dob" ).datepicker({
-         changeYear: true,
-         changeMonth: true,
-         dateFormat: "dd-mm-yy",
-         yearRange: "c-85:c-0"
-      });
-      $("#dob").click(function(){
-         if ($("#dob").val() == '') {
-            $("#dob").val(" ");
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+   function field_error(id,text){
+      $('#error_'+id).attr('class', 'error').text(text);
+      $("#glyphcn"+id).remove();
+      var div = $("#"+id).closest("div");
+      div.removeClass("has-success").addClass("has-error has-feedback").append('<span id="glyphcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>');
+      return false;
+   }
+   function field_success(id){
+      $('#error_'+id).attr('class', '').text('');
+      $("#glyphcn"+id).remove();
+      var div = $("#"+id).closest("div");
+      div.removeClass("has-error").addClass("has-success has-feedback").append('<span id="glyphcn'+id+'" class="glyphicon glyphicon-ok form-control-feedback"></span>');
+   }
+   function field_wait(id){
+      $('#error_'+id).attr('class', '').text('');
+      $("#glyphcn"+id).remove();
+      var div = $("#"+id).closest("div");
+      div.removeClass("has-error has-success has-feedback").append('<span id="glyphcn'+id+'" style="font-size: 16px;color: #f4545f;width: 16px;position: absolute;height: 16px;top: 16px;right: 10px;z-index: 2;text-align: center;pointer-events: none;" class="fa fa-refresh fa-spin"></span>');
+   }
+   function hasError(id,text) {
+      $("#"+id).closest("div").addClass('has-error');
+      if(text==null) $("#error_"+id).addClass('error').text('This field is Required!');
+      else $("#error_"+id).addClass('error').text(text);
+      return false;
+   }
+   function hasSuccess(id) {
+      $("#"+id).closest("div").removeClass('has-error');
+      $("#error_"+id).removeClass('error').text('');
+   }
+   function ajaxGetCity() {
+      var state = 'state_id='+$('#state').val();
+      $.ajax({
+         type:'GET',
+         url: "/get/city",
+         data: state,
+         success: function(data){
+            if(data){
+               $("#city").empty();
+               $("#city").append('<option value="" disabled selected>Select City</option>');
+               $.each(data,function(value){
+                  $("#city").append('<option value="'+data[value].city_id+'">'+data[value].city_name+'</option>');
+               });
+            }else{
+               $("#city").empty();
+            }
          }
       });
-   });
-   </script>
-
-   <script>
-   var currentTab = 0; // Current tab is set to be the first tab (0)
-   showTab(currentTab); // Display the crurrent tab
-
-   function showTab(n) {
-      // This function will display the specified tab of the form...
-      var x = document.getElementsByClassName("tab");
-      x[n].style.display = "block";
-      //... and fix the Previous/Next buttons:
-      if (n == 0) {
-         document.getElementById("prevBtn").style.display = "none";
-      } else {
-         document.getElementById("prevBtn").style.display = "inline";
-      }
-      if (n == (x.length - 1)) {
-         document.getElementById("nextBtn").innerHTML = "Submit";
-      } else {
-         document.getElementById("nextBtn").innerHTML = "Next";
-      }
-      //... and run a function that will display the correct step indicator:
-      fixStepIndicator(n)
    }
-
-   function nextPrev(n) {
-      // This function will figure out which tab to display
-      var x = document.getElementsByClassName("tab");
-      // Exit the function if any field in the current tab is invalid:
-      if (n == 1 && !validateForm()) return false;
-      // Hide the current tab:
-      x[currentTab].style.display = "none";
-      // Increase or decrease the current tab by 1:
-      currentTab = currentTab + n;
-      // if you have reached the end of the form...
-      if (currentTab >= x.length) {
-         // ... the form gets submitted:
-         document.getElementById("regForm").submit();
-         return false;
-      }
-      // Otherwise, display the correct tab:
-      showTab(currentTab);
+   function ajaxUsernameUnique(username) {
+      var valid = true;
+      field_wait("username");
+      clearTimeout($('#username').data('timer'));
+      var api_token = '{{Auth::user()->api_token}}';
+      var link = 'api_token='+ encodeURIComponent(api_token) + '&username='+ encodeURIComponent(username);
+      $('#username').data('timer', setTimeout(function() {
+         $.ajax({
+            type:'get',
+            url: "/api/username/unique",
+            data: link,
+            contentType: 'application/json',
+            success: function(data) {
+               if (data=="true") field_success("username");
+               else valid = field_error("username","Username aready Exists!");
+            }
+         });
+      }, 500));
+      return valid;
    }
-
+   function usernameUnique() {
+      var username = $('#username').val();
+      if(!username.match(/^[a-zA-Z0-9]+$/)) field_error("username","Only Alphabets and Numbers are allowed!");
+      else if (username.length >= 6) {
+         if (username.length >= 20) field_error("username","Maximum 20 characters allowed!");
+         else ajaxUsernameUnique(username);
+      }
+   }
+   function usernameValidate() {
+      var valid = true;
+      var username = $('#username').val();
+      if (username == '') valid = field_error("username","Username is required!");
+      else if (!username.match(/^[a-zA-Z0-9_]+$/)) valid = field_error("username","Only Alphabets and Numbers are allowed!");
+      else if (username.length < 6) valid = field_error("username","Minimum 6 characters reqiured!");
+      else if (username.length >= 20) valid = field_error("username","Maximum 20 characters allowed!");
+      else if ($("#error_username").text() === "Username aready Exists!") valid = false;
+      return valid;
+   }
    function validateForm() {
-      // var valid = true;
-      var x, y, i, valid = true;
+      var valid = true;
+      valid = usernameValidate();
       var dob = $("#dob").val();
-      if (dob == '' || dob.indexOf(' ') >= 0) {
-         $("#dob").closest("div").addClass('has-error');
-         $("#error_dob").addClass('error').text('This field is Required!');
-         $("#dob").val("");
-         valid = false;
-      } else {
-         if (dob.length !== 10) {
-            $("#dob").closest("div").addClass('has-error');
-            $("#error_dob").addClass('error').text('Invalid Date format!');
-            valid = false;
-         } else {
-            $("#dob").closest("div").removeClass('has-error');
-            $("#error_dob").removeClass('error').text('');
-            valid = true;
-         }
-      }
-      if ($("#gender").val() == '') {
-         $("#gender").closest("div").addClass('has-error');
-         $("#error_gender").addClass('error').text('This field is Required!');
-         valid = false;
-      } else {
-         $("#gender").closest("div").removeClass('has-error');
-         $("#error_gender").removeClass('error').text('');
-         valid = true;
-      }
-      if ($("#state").val() == '') {
-         $("#state").closest("div").addClass('has-error');
-         $("#error_state").addClass('error').text('This field is Required!');
-         valid = false;
-      } else {
-         $("#state").closest("div").removeClass('has-error');
-         $("#error_state").removeClass('error').text('');
-         valid = true;
-      }
-      if ($("#city").val() == '') {
-         $("#city").closest("div").addClass('has-error');
-         $("#error_city").addClass('error').text('This field is Required!');
-         valid = false;
-      } else {
-         if (true) {
-
-         } else {
-            $("#city").closest("div").removeClass('has-error');
-            $("#error_city").removeClass('error').text('');
-            valid = true;
-         }
-      }
-      // This function deals with validation of the form fields
-      x = document.getElementsByClassName("tab");
-      y = x[currentTab].getElementsByTagName("input");
-      // A loop that checks every input field in the current tab:
-      for (i = 0; i < y.length; i++) {
-         // If a field is empty...
-         if (y[i].value == "") {
-            // add an "invalid" class to the field:
-            y[i].className += " invalid";
-            // and set the current valid status to false
-            valid = false;
-         }
-      }
-      // If the valid status is true, mark the step as finished and valid:
-      if (valid) {
-         document.getElementsByClassName("step")[currentTab].className += " finish";
-      }
-      return valid; // return the valid status
+      if (dob == '' || dob.indexOf(' ') >= 0) { $("#dob").val(""); valid = hasError('dob','Date of Birth is required!');}
+      else {if (dob.length !== 10) valid = hasError('dob','Invalid Date format!'); else hasSuccess('dob');}
+      if ($("#gender").val() == '' || $("#gender").val() == null) valid = hasError('gender','Gender is required!'); else hasSuccess('gender');
+      if ($("#state").val() == '' || $("#state").val() == null) valid = hasError('state','State is required!'); else hasSuccess('state');
+      if ($("#city").val() == '' || $("#city").val() == null) valid = hasError('city','City is required!'); else hasSuccess('city');
+      return valid;
    }
-
-   function fixStepIndicator(n) {
-      // This function removes the "active" class of all steps...
-      var i, x = document.getElementsByClassName("step");
-      for (i = 0; i < x.length; i++) {
-         x[i].className = x[i].className.replace(" active", "");
-      }
-      //... and adds the "active" class on the current step:
-      x[n].className += " active";
-   }
-   </script>
+   $(document).ready(function(){
+      $('#username').on('keyup',function(){usernameUnique();});
+      $("#dob").datepicker({ changeYear: true, changeMonth: true, dateFormat: "yy-mm-dd", yearRange: "c-85:c-0" }).click(function(){if($("#dob").val()=='')$("#dob").val(" ");});
+      $('#state').change(function(){ajaxGetCity();});
+      $('#registerUserDetails').on('submit', function(e){ if(!validateForm()) e.preventDefault(); });
+   });
+</script>
 @endsection

@@ -1,7 +1,10 @@
 .navbar{
+   width: 360px;
    height: 56px;
+   min-width: 360px;
    border-left: 0px;
    border-right: 0px;
+   width: auto !important;
    margin: 0px !important;
    padding: 0px !important;
    border-radius: 0px !important;
@@ -83,6 +86,21 @@
                background-size: cover;
                background-position: center;
                background-repeat: no-repeat;
+            }
+            .navbar-user-image-text{
+               float: left;
+               color: #fff;
+               width: 32px;
+               height: 32px;
+               font-size: 20px;
+               margin-top: 2px;
+               font-weight: 500;
+               margin-right: 8px;
+               text-align: center;
+               border-radius: 50%;
+               display: inline-block;
+               background-color: #f4545f;
+               text-transform: uppercase;
             }
             .navbar-user-name{
                display: block;

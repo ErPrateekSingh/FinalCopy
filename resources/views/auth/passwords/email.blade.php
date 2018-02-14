@@ -15,10 +15,9 @@
                      {{ session('status') }}
                   </div>
                @endif
-
-               <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+               <form id="emailForm" class="form-horizontal" method="POST" action="{{ route('password.email') }}" role="form" novalidate>
                   {{ csrf_field() }}
-                  <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                  <div class="col-xs-10 col-xs-offset-1">
                      <div class="form-group form-group-mat{{ $errors->has('email') ? ' has-error' : '' }}">
                         <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required>
                         <label for="email" class="control-label"><i class="fa fa-envelope m-r-5"></i> E-Mail Address</label><i class="bar"></i>
@@ -27,7 +26,6 @@
                            <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
                         @endif
                      </div>
-
                      <div class="form-group form-group-mat" style="text-align:center;">
                         <button type="submit" class="btn btn-primary" data-ripple="rgba(255,255,255,0.5)" style="width:95%; margin-top: 10px;">
                            Send Password Reset Link
@@ -43,4 +41,34 @@
       </div>
    </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+function field_error(id,text){
+   $('#error_'+id).attr('class', 'error').text(text);
+   $("#glyphcn"+id).remove();
+   var div = $("#"+id).closest("div");
+   div.removeClass("has-success").addClass("has-error has-feedback").append('<span id="glyphcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>');
+   return false;
+}
+function field_clear(id){
+   $('#error_'+id).attr('class', '').text('');
+   $("#glyphcn"+id).remove();
+   $("#"+id).closest("div").removeClass("has-error has-success has-feedback");
+}
+function validateForm() {
+   var valid = true;
+   var email = $("#email").val();
+   if (email == '') valid = field_error('email','Email is required!');
+   else  if(!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/)) valid = field_error("email","Enter a valid Email Address!");
+   return valid;
+}
+$(document).ready(function(){
+   // Code for indivadual Register fields STARTS
+   $('#email').on('blur',function(){($(this).val() == "")?field_clear("email"):validateForm()});
+   //Code for Register Form Submit STARTS
+   $('#emailForm').on('submit', function(e){ if(!validateForm()) e.preventDefault(); });
+});
+</script>
 @endsection

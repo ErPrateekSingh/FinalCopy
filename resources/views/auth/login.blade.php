@@ -10,10 +10,9 @@
                <span style="margin-left: 5px;">LOGIN</span>
             </div>
             <div class="panel-body">
-               <form class="form-horizontal clearfix" method="POST" action="{{ route('login') }}">
+               <form id="loginForm" class="form-horizontal clearfix" method="POST" action="{{ route('login') }}" role="form" novalidate>
                   {{ csrf_field() }}
-                  <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-
+                  <div class="col-xs-10 col-xs-offset-1">
                      <div class="form-group form-group-mat{{ $errors->has('email') ? ' has-error' : '' }}">
                         <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required spellcheck="false">
                         <label for="email" class="control-label"><i class="fa fa-envelope m-r-5"></i> E-Mail Address</label><i class="bar"></i>
@@ -22,7 +21,6 @@
                            <span class="help-block"> {{ $errors->first('email') }} </span>
                         @endif
                      </div>
-
                      <div class="form-group form-group-mat{{ $errors->has('password') ? ' has-error' : '' }}">
                         <input id="password" type="password" class="form-control" name="password" required>
                         <label for="password" class="control-label"><i class="fa fa-lock m-r-5"></i> Password</label><i class="bar"></i>
@@ -31,7 +29,6 @@
                            <span class="help-block"> {{ $errors->first('password') }} </span>
                         @endif
                      </div>
-
                      <div class="form-group m-t-10">
                         <div class="row">
                            <div class="col-xs-6 xs-576">
@@ -49,7 +46,6 @@
                            </div>
                         </div>
                      </div>
-
                      <div class="form-group form-group-mat" style="text-align:center;">
                         <button type="submit" class="btn btn-primary" data-ripple="rgba(255,255,255,0.5)" style="width:40%; margin-top: 10px;">
                            Login
@@ -81,4 +77,49 @@
       </div>
    </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+function field_error(id,text){
+   $('#error_'+id).attr('class', 'error').text(text);
+   $("#glyphcn"+id).remove();
+   var div = $("#"+id).closest("div");
+   div.removeClass("has-success").addClass("has-error has-feedback").append('<span id="glyphcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>');
+   return false;
+}
+function field_clear(id){
+   $('#error_'+id).attr('class', '').text('');
+   $("#glyphcn"+id).remove();
+   $("#"+id).closest("div").removeClass("has-error has-success has-feedback");
+}
+function validateForm() {
+   var valid = true;
+   var email = $("#email").val();
+   var password = $("#password").val();
+   if (email == '') valid = field_error('email','Email is required!');
+   else  if(!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/)) valid = field_error("email","Enter a valid Email Address!");
+   if (password == '') valid = field_error('password','Password is required!');
+   else if (!password.match(/^[a-zA-Z0-9]+$/)) valid = field_error('password','Only alphabets and spaces are allowed!');
+   else if (password.length <= 6) valid = field_error('password','Minimum 6 characters reqiured!');
+   return valid;
+}
+function Validate(idName,type){
+   var id = $("#"+idName).val();
+   if(type == 'email'){
+      if (id == '') valid = field_error('email','Email is required!');
+      else  if(!id.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/)) valid = field_error("email","Enter a valid Email Address!");
+   } else if(type == 'password'){
+      if (!id.match(/^[a-zA-Z0-9]+$/)) valid = field_error(idName, "Only alphabets and numbers are allowed!");
+      else if (id.length <= 6) valid = field_error(idName,'Minimum 6 characters reqiured!');
+   }
+}
+$(document).ready(function(){
+   // Code for indivadual Register fields STARTS
+   $('#email').on('blur',function(){($(this).val() == "")?field_clear("email"):Validate('email','email')});
+   $('#password').on('blur',function(){($(this).val() == "")?field_clear("password"):Validate('password','password')});
+   //Code for Register Form Submit STARTS
+   $('#loginForm').on('submit', function(e){ if(!validateForm()) e.preventDefault(); });
+});
+</script>
 @endsection

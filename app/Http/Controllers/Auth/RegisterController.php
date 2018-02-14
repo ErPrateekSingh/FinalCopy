@@ -27,7 +27,11 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/user/details';/* Redirected to '/user/details' page rather than '/home' */
+
+     
+     //email validation link here, after email validation redirect here.
+     //
+    protected $redirectTo = '/register/user/details';/* Redirected to '/user/details' page rather than '/home' */
 
     /**
      * Create a new controller instance.
@@ -63,11 +67,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'fname' => $data['fname'],
             'lname' => $data['lname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        // This will assign users with 'subscriber' role
+        $user->attachRole('subscriber');
+        $user->save();
+        return $user;
     }
 }

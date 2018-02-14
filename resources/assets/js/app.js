@@ -21,3 +21,9 @@ $('[data-toggle=modal]').on('click', function (e) {
     return false;
 });
 // code to delay display of modal by 300 millisecond ENDS
+
+// code to display First Letter of Name In Header STARTS
+$(document).ready(function(){
+  $('#image_text').text($('#userName').text().charAt(0));
+});
+// code to display First Letter of Name In Header ENDS

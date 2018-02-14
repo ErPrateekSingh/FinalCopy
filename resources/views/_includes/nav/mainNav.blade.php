@@ -72,14 +72,18 @@
                   </ul>
                </li>
                <li class="dropdown dd-user m-l-10">
-                  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" title="Prateek Singh&#013;(Hanuman Mandir Store)">
-                     <span class="navbar-user-image" style="background-image: url({{ asset('images/userImage44.jpg') }});"></span>
-                     <span class="navbar-user-name text-trim"> Prateek<!--/*{/*{ Auth::user()->name }*/}*/--></span>
+                  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" title="{{ Auth::user()->fname }} {{ Auth::user()->lname }}&#013;(Hanuman Mandir Store)">
+                     @if(Auth::user()->image_id != 'null')
+                        <span id="image_text" class="navbar-user-image-text"></span>
+                     @else
+                        <span class="navbar-user-image" style="background-image: url({{ asset('images/userImage44.jpg') }});"></span>
+                     @endif
+                     <span id="userName" class="navbar-user-name text-trim">{{ Auth::user()->fname }}</span>
                   </button>
                   <ul class="dropdown-menu" role="menu">
                      <div class="dd-menu-body">
                         <div align="center" class="dd-menu-image"><img src="{{ asset('images/userImage100.jpg') }}" alt="User Image"></div>
-                        <div class="dd-menu-name text-trim">Prateek Singh</div>
+                        <div class="dd-menu-name text-trim">{{ Auth::user()->fname }} {{ Auth::user()->lname }}</div>
                         <div class="dd-menu-city text-trim">Allahabad, Uttar Pradesh, India</div>
                      </div>
                      <div class="dd-menu-footer clearfix">
