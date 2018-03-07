@@ -96,7 +96,7 @@
                            </div>
                         </div>
                      </div>
-                     <button type="submit" class="tabButton">Next</button>
+                     <button type="submit" class="tabButton" data-ripple>Next</button>
                   </form>
                </div>
             </div>

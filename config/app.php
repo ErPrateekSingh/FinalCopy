@@ -177,6 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ObserverServiceProvider::class,
+        App\Providers\ViewComposerServiceProvider::class,
         /*
         * Third Party Service Providers...
         */

@@ -1,16 +1,17 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Auth;
+use Image;
 use App\User;
 use App\City;
 use App\State;
 use App\Detail;
+use App\Image as Img;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Storage;
 
 class RegisterUserController extends Controller
 {
@@ -64,87 +65,34 @@ class RegisterUserController extends Controller
 
    /*function to post image after upload from the register/user/images page*/
    public function postUserImageForm(Request $request) {
+      $validatedData = $request->validate([
+         'userImage'      => 'required|image|dimensions:min_width=250,min_height=250',
+      ]);
 
+      if ($request->hasFile('userImage')) {
+         if(!Storage::exists('/public/images/uploads/'.date("Y").'/avatar')) {
+            Storage::makeDirectory('/public/images/uploads/'.date("Y").'/avatar', 0775, true); //creates directory for images upload
+         }
+         $cropped_value = $request->input("cropped_value"); // Width,height,x,y for cropping
+         $cp_v = explode(",",$cropped_value); // Explode width,height,x,y
+         $file = $request->file('userImage');
+         $file_name = time() . '.' . $file->getClientOriginalExtension(); // Get Cropped Image Extention
+         $location = storage_path('/app/public/images/uploads/'.date("Y").'/'.$file_name); //Cropped Image Upload Path
+         $location_avtr = storage_path('/app/public/images/uploads/'.date("Y").'/avatar/'.$file_name); //Cropped Image Upload Path for Avatar
+         $img = Image::make($file->getRealPath());
+         $img->crop($cp_v[0],$cp_v[1],$cp_v[2],$cp_v[3]); // Crop Image
+         $img->resize(250, 250)->save($location); // Resize Image & Save Image
+         $img->resize(40, 40)->save($location_avtr); // Resize Image & Save Image for Avatar (Displays only 32X32)
+
+         $id = Img::insertGetId(['image_path' => $file_name, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]); // Save Image path in database
+         DB::table('images_user')->insert(['user_id' => Auth::user()->id, 'image_id' => $id, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);
+         DB::table('users')->where('id', Auth::user()->id)->update(['image_id' => $id, 'updated_at' => \Carbon\Carbon::now()]);
+         return redirect()->route('home');
+      }
    }
 
 
    // public function showRegistrationForm() {
    //    return view('pages.registration.registration');
    // }
-
-   /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function index()
-   {
-      //
-   }
-
-   /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-   public function create()
-   {
-      //
-   }
-
-   /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-   public function store(Request $request)
-   {
-      //
-   }
-
-   /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-   public function show($id)
-   {
-      //
-   }
-
-   /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-   public function edit($id)
-   {
-      //
-   }
-
-   /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-   public function update(Request $request, $id)
-   {
-      //
-   }
-
-   /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-   public function destroy($id)
-   {
-      //
-   }
 }

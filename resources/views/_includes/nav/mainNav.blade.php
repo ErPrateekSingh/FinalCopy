@@ -21,9 +21,13 @@
                   <i class="fa fa-search"></i>
                </button>
             @else
-               <button class="m-button-round m-user-image flatButton" data-toggle="modal" data-target="#"
-                style="background-image: url({{ asset('images/userImage44.jpg') }});"><!-- Data target wiil b added later -->
-               </button>
+               @if(Auth::user()->image_id != 'null')
+                  <button class="m-button-round m-user-image flatButton" data-toggle="modal" data-target="#"
+                    style="background-image: url({{ asset('storage/images/uploads/'.date_format($userImage->created_at, 'Y').'/avatar/'.$userImage->image_path) }});"><!-- on click event wiil b added later -->
+                  </button>
+               @else
+                  <button id="image_text" class="m-button-round m-navbar-user-image-text flatButton" data-toggle="modal" data-target="#"></button><!-- on click event wiil b added later -->
+               @endif
                <button data-ripple="rgba(0,0,0,0.5)" class="m-button-round m-icon flatButton" data-toggle="modal" data-target="#"><!-- Data target wiil b added later -->
                   <i class="fa fa-bell-o"></i>
                   <div class="notify-badge">20</div>
@@ -36,7 +40,7 @@
       </div>
       <div class="navbar-collapse collapse navbar-responsive-collapse navbar-right" id="navCollapse">
          <form class="navbar-form navbar-left" role="search">
-            <div data-ripple="rgba(0,0,0,0.5)" class="header-city-name" data-toggle="modal" data-target=".cityModal">
+            <div data-ripple="rgba(0,0,0,0.5)" class="header-city-name" data-toggle="modal" data-target=".cityModal" title="Click to Change Your City">
                <i class="fa fa-map-marker m-r-5"></i>Banglore
             </div>
             <div class="form-group">
@@ -72,25 +76,25 @@
                   </ul>
                </li>
                <li class="dropdown dd-user m-l-10">
-                  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" title="{{ Auth::user()->fname }} {{ Auth::user()->lname }}&#013;(Hanuman Mandir Store)">
+                  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" title="{{ Auth::user()->fname .' '. Auth::user()->lname }}&#013;({{ '@'.$userImage->username }})">
                      @if(Auth::user()->image_id != 'null')
-                        <span id="image_text" class="navbar-user-image-text"></span>
+                        <span class="navbar-user-image" style="background-image: url({{ asset('storage/images/uploads/'.date_format($userImage->created_at, 'Y').'/avatar/'.$userImage->image_path) }});"></span>
                      @else
-                        <span class="navbar-user-image" style="background-image: url({{ asset('images/userImage44.jpg') }});"></span>
+                        <span id="image_text" class="navbar-user-image-text"></span>
                      @endif
                      <span id="userName" class="navbar-user-name text-trim">{{ Auth::user()->fname }}</span>
                   </button>
                   <ul class="dropdown-menu" role="menu">
                      <div class="dd-menu-body">
-                        <div align="center" class="dd-menu-image"><img src="{{ asset('images/userImage100.jpg') }}" alt="User Image"></div>
-                        <div class="dd-menu-name text-trim">{{ Auth::user()->fname }} {{ Auth::user()->lname }}</div>
-                        <div class="dd-menu-city text-trim">Allahabad, Uttar Pradesh, India</div>
+                        <div align="center" class="dd-menu-image"><img src="{{ asset('storage/images/uploads/'.date_format($userImage->created_at, 'Y').'/'.$userImage->image_path) }}" alt="User Image"></div>
+                        <div class="dd-menu-name text-trim m-t-5">{{ Auth::user()->fname .' '. Auth::user()->lname }}</div>
+                        <div class="dd-menu-username text-trim m-b-5">({{ '@'.$userImage->username }})</div>
+                        <!-- <div class="dd-menu-city text-trim">Allahabad, Uttar Pradesh, India</div> -->
                      </div>
                      <div class="dd-menu-footer clearfix">
-                        <button data-ripple class="btn btn-red pull-left" href="#">Profile</button>
+                        <button data-ripple class="btn btn-red pull-left" href="#">Profile</button><!--Profile page to be added-->
                         <button data-ripple="rgba(0,0,0,0.5)" class="btn btn-default pull-right" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                               Sign Out
                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                               {{ csrf_field() }}

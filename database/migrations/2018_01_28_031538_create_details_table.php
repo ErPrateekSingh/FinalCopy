@@ -23,6 +23,8 @@ class CreateDetailsTable extends Migration
            $table->unsignedInteger('city_id');
            $table->timestamps();
 
+           $table->primary(['user_id']);/*added after migration*/
+
            $table->foreign('user_id')->references('id')->on('users')
                ->onDelete('cascade');
         });
