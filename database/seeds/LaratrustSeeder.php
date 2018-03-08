@@ -59,6 +59,7 @@ class LaratrustSeeder extends Seeder
                 'lname' => 'Singh',
                 'email' => $key.'@app.com',
                 'password' => bcrypt('password'),
+                'status_id' => '1',
                 'api_token' => bin2hex(openssl_random_pseudo_bytes(30))
             ]);
 

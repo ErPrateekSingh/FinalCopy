@@ -24,6 +24,6 @@ $('[data-toggle=modal]').on('click', function (e) {
 
 // code to display First Letter of Name In Header STARTS
 $(document).ready(function(){
-  $('#image_text').text($('#userName').text().charAt(0));
+  $('.image_text').text($('#userName').text().charAt(0));
 });
 // code to display First Letter of Name In Header ENDS

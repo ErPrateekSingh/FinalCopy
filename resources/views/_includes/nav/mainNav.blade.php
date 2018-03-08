@@ -21,12 +21,12 @@
                   <i class="fa fa-search"></i>
                </button>
             @else
-               @if(Auth::user()->image_id != 'null')
+               @if(Auth::user()->image_id != null)
                   <button class="m-button-round m-user-image flatButton" data-toggle="modal" data-target="#"
-                    style="background-image: url({{ asset('storage/images/uploads/'.date_format($userImage->created_at, 'Y').'/avatar/'.$userImage->image_path) }});"><!-- on click event wiil b added later -->
+                    style="background-image: url({{ asset('storage/images/uploads/'.date_format($userImage[0]->created_at, 'Y').'/avatar/'.$userImage[0]->image_path) }});"><!-- on click event wiil b added later -->
                   </button>
                @else
-                  <button id="image_text" class="m-button-round m-navbar-user-image-text flatButton" data-toggle="modal" data-target="#"></button><!-- on click event wiil b added later -->
+                  <button class="image_text m-button-round m-navbar-user-image-text flatButton" data-toggle="modal" data-target="#"></button><!-- on click event wiil b added later -->
                @endif
                <button data-ripple="rgba(0,0,0,0.5)" class="m-button-round m-icon flatButton" data-toggle="modal" data-target="#"><!-- Data target wiil b added later -->
                   <i class="fa fa-bell-o"></i>
@@ -76,20 +76,28 @@
                   </ul>
                </li>
                <li class="dropdown dd-user m-l-10">
-                  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" title="{{ Auth::user()->fname .' '. Auth::user()->lname }}&#013;({{ '@'.$userImage->username }})">
-                     @if(Auth::user()->image_id != 'null')
-                        <span class="navbar-user-image" style="background-image: url({{ asset('storage/images/uploads/'.date_format($userImage->created_at, 'Y').'/avatar/'.$userImage->image_path) }});"></span>
+                  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" title="{{ Auth::user()->fname .' '. Auth::user()->lname }}@if(Auth::user()->status_id>1)&#013;({{ '@'.$userImage[0]->username }})@endif">
+                     @if(Auth::user()->image_id != null)
+                        <span class="navbar-user-image" style="background-image: url({{ asset('storage/images/uploads/'.date_format($userImage[0]->created_at, 'Y').'/avatar/'.$userImage[0]->image_path) }});"></span>
                      @else
-                        <span id="image_text" class="navbar-user-image-text"></span>
+                        <span class="image_text navbar-user-image-text"></span>
                      @endif
                      <span id="userName" class="navbar-user-name text-trim">{{ Auth::user()->fname }}</span>
                   </button>
                   <ul class="dropdown-menu" role="menu">
                      <div class="dd-menu-body">
-                        <div align="center" class="dd-menu-image"><img src="{{ asset('storage/images/uploads/'.date_format($userImage->created_at, 'Y').'/'.$userImage->image_path) }}" alt="User Image"></div>
+                        <div align="center" class="dd-menu-image">
+                           @if(Auth::user()->image_id != null)
+                              <img src="{{ asset('storage/images/uploads/'.date_format($userImage[0]->created_at, 'Y').'/'.$userImage[0]->image_path) }}" alt="User Image">
+                           @else
+                              <span class="image_text"></span>
+                           @endif
+                        </div>
                         <div class="dd-menu-name text-trim m-t-5">{{ Auth::user()->fname .' '. Auth::user()->lname }}</div>
-                        <div class="dd-menu-username text-trim m-b-5">({{ '@'.$userImage->username }})</div>
+                        @if(Auth::user()->status_id>1)
+                        <div class="dd-menu-username text-trim m-b-5">({{ '@'.$userImage[0]->username }})</div>
                         <!-- <div class="dd-menu-city text-trim">Allahabad, Uttar Pradesh, India</div> -->
+                        @endif
                      </div>
                      <div class="dd-menu-footer clearfix">
                         <button data-ripple class="btn btn-red pull-left" href="#">Profile</button><!--Profile page to be added-->

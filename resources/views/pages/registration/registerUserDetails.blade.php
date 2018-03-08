@@ -84,7 +84,7 @@
                               <div class="form-group form-group-mat{{ $errors->has('city') ? ' has-error' : '' }}">
                                  <select class="form-control" id="city" name="city">
                                     <option value="" disabled selected>Select City</option>
-                                    <option disabled>Please select state first !</option>
+                                    <option disabled>Please select State first !</option>
                                  </select>
                                  <label for="city" class="control-label"><i class="fa fa-map-marker m-r-5"></i> City</label><i class="bar"></i>
                                  <div id="error_city" class=""></div>
@@ -140,6 +140,7 @@
    }
    function ajaxGetCity() {
       var state = 'state_id='+$('#state').val();
+      $("#city").append('<option value="" disabled selected>Please Wait...</option>');
       $.ajax({
          type:'GET',
          url: "/get/city",
@@ -159,31 +160,25 @@
    }
    function ajaxUsernameUnique(username) {
       var valid = true;
+      var currentXhr;
       field_wait("username");
-      clearTimeout($('#username').data('timer'));
       var api_token = '{{Auth::user()->api_token}}';
       var link = 'api_token='+ encodeURIComponent(api_token) + '&username='+ encodeURIComponent(username);
-      $('#username').data('timer', setTimeout(function() {
-         $.ajax({
+         if (!usernameValid) currentXhr.abort();
+         currentXhr && currentXhr.readyState != 4 && currentXhr.abort(); // clear previous request
+         var currentXhr = $.ajax({
             type:'get',
             url: "/api/username/unique",
             data: link,
             contentType: 'application/json',
             success: function(data) {
-               if (data=="true") field_success("username");
-               else valid = field_error("username","Username aready Exists!");
+               if (usernameValid) {
+                  if (data=="true") field_success("username");
+                  else valid = field_error("username","Username aready Exists!");
+               }
             }
          });
-      }, 500));
       return valid;
-   }
-   function usernameUnique() {
-      var username = $('#username').val();
-      if(!username.match(/^[a-zA-Z0-9]+$/)) field_error("username","Only Alphabets and Numbers are allowed!");
-      else if (username.length >= 6) {
-         if (username.length >= 20) field_error("username","Maximum 20 characters allowed!");
-         else ajaxUsernameUnique(username);
-      }
    }
    function usernameValidate() {
       var valid = true;
@@ -207,7 +202,32 @@
       return valid;
    }
    $(document).ready(function(){
-      $('#username').on('keyup',function(){usernameUnique();});
+
+      var delay = (function(){
+         var timer = 0;
+         return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+         };
+      })();
+
+      $('#username').on('keyup',function(){
+         usernameValid = true;
+         var username = $('#username').val();
+         if(!username.match(/^[a-zA-Z0-9]+$/)) {field_error("username","Only Alphabets and Numbers are allowed!");usernameValid=false;}
+         else if (username.length >= 6) {
+            if (username.length >= 20) {field_error("username","Maximum 20 characters allowed!");usernameValid=false;}
+            else {
+               delay(function(){
+                  ajaxUsernameUnique(username);
+               }, 500 );
+            }
+         } else {
+            $('#error_username').attr('class', '').text('');
+            $("#glyphcnusername").remove();
+            $("#username").closest("div").removeClass("has-error has-success has-feedback");
+         }
+      });
       $("#dob").datepicker({ changeYear: true, changeMonth: true, dateFormat: "yy-mm-dd", yearRange: "c-85:c-0" }).click(function(){if($("#dob").val()=='')$("#dob").val(" ");});
       $('#state').change(function(){ajaxGetCity();});
       $('#registerUserDetails').on('submit', function(e){ if(!validateForm()) e.preventDefault(); });

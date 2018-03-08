@@ -14,17 +14,17 @@ class CreateUserImagesTable extends Migration
     public function up()
     {
         Schema::create('images_user', function (Blueprint $table) {
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('image_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('image_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade');
-            $table->foreign('image_id')->references('id')->on('images')
-                ->onDelete('cascade');
 
             $table->primary(['user_id', 'image_id']);
         });
+
+      //   Schema::table('images_user', function($table) {
+      //      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+      //      $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
+      //   });
     }
 
     /**

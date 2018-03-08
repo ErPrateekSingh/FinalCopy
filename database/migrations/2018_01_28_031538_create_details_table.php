@@ -14,8 +14,9 @@ class CreateDetailsTable extends Migration
     public function up()
     {
         Schema::create('details', function (Blueprint $table) {
-           $table->increments('id');
-           $table->unsignedInteger('user_id');
+         //   $table->increments('id');
+         // $table->unsignedInteger('user_id');
+           $table->unsignedInteger('id');
            $table->string('username')->unique();
            $table->date('dob');
            $table->string('gender');
@@ -23,10 +24,9 @@ class CreateDetailsTable extends Migration
            $table->unsignedInteger('city_id');
            $table->timestamps();
 
-           $table->primary(['user_id']);/*added after migration*/
+           $table->primary(['id']);/*added after migration*/
 
-           $table->foreign('user_id')->references('id')->on('users')
-               ->onDelete('cascade');
+           $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

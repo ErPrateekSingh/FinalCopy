@@ -48,13 +48,15 @@ class RegisterUserController extends Controller
       ]);
 
       $post = new Detail;
-      $post->user_id = Auth::user()->id;
+      // $post->user_id = Auth::user()->id;
+      $post->id = Auth::user()->id;
       $post->username = $request->username;
       $post->dob = $request->dob;
       $post->gender = $request->gender;
       $post->state_id = $request->state;
       $post->city_id = $request->city;
       $post->save();
+      DB::table('users')->where('id', Auth::user()->id)->update(['status_id' => '2', 'updated_at' => \Carbon\Carbon::now()]);
       return redirect()->route('register.user.image');
    }
 
@@ -86,7 +88,7 @@ class RegisterUserController extends Controller
 
          $id = Img::insertGetId(['image_path' => $file_name, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]); // Save Image path in database
          DB::table('images_user')->insert(['user_id' => Auth::user()->id, 'image_id' => $id, 'created_at' =>  \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]);
-         DB::table('users')->where('id', Auth::user()->id)->update(['image_id' => $id, 'updated_at' => \Carbon\Carbon::now()]);
+         DB::table('users')->where('id', Auth::user()->id)->update(['status_id' => '3', 'image_id' => $id, 'updated_at' => \Carbon\Carbon::now()]);
          return redirect()->route('home');
       }
    }
