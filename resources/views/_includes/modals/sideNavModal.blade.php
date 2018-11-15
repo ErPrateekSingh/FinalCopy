@@ -13,7 +13,7 @@
             <div class="modal-body sideNav-body">
                <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-home"></i>Home</a>
                <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-th"></i>Browse Category</a>
-               <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-plus-circle"></i>Add Free Listing</a>
+               <a href="{{ route('register.profile.category') }}" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-plus-circle"></i>Add Free Listing</a>
                <div class="divider"></div>
                <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-sign-in"></i>Login</a>
                <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-user-plus"></i>Register</a>
@@ -33,7 +33,7 @@
                <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-home"></i>Home</a>
                <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-user"></i>Profile</a>
                <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-th"></i>Browse Category</a>
-               <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-plus-circle"></i>Add Free Listing</a>
+               <a href="{{ route('register.profile.category') }}" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-plus-circle"></i>Add Free Listing</a>
                <div class="divider"></div>
                <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-heart-o"></i>Favourites</a>
                <a href="#" data-ripple="rgba(0,0,0,0.5)"><i class="fa fa-bookmark-o"></i>Bookmarks</a>

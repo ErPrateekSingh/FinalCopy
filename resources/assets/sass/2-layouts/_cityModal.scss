@@ -52,6 +52,11 @@
          text-align: center;
          display: inline-block;
          border: 1px solid #aaa;
+         &.selected {
+            font-weight: 600 !important;
+            border-color: #f5454f !important;
+            // background-color: rgba(244, 84, 95, 0.3) !important;
+         }
       }
    }
 }

@@ -1,15 +1,6 @@
-//layouts begins
-@import "home";
-@import "index";
-@import "navbar";
-@import "footer";
-@import "profile";
-@import "sideNav";
-@import "cityModal";
-@import "dashboard";
-@import "searchModal";
-//layouts ends
-
+footer {
+   border-top: 1px solid #f4545f;
+}
 // @media (max-width: 400px) {}
 // @media (min-width: 401px) and (max-width: 576px) {}
 // @media (min-width: 577px) and (max-width: 767px) {}

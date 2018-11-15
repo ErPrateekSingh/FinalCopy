@@ -13,7 +13,7 @@
          <div class="m-header">
             <div data-ripple="rgba(0,0,0,0.5)" class="m-city" data-toggle="modal" data-target=".cityModal">
                <span class="m-city-name">
-                  <i class="fa fa-map-marker m-r-5"></i>Mumbai
+                  <i class="fa fa-map-marker m-r-5"></i>{{ $cityName->city_name }}
                </span>
             </div>
             @if(Auth::guest())
@@ -41,7 +41,7 @@
       <div class="navbar-collapse collapse navbar-responsive-collapse navbar-right" id="navCollapse">
          <form class="navbar-form navbar-left" role="search">
             <div data-ripple="rgba(0,0,0,0.5)" class="header-city-name" data-toggle="modal" data-target=".cityModal" title="Click to Change Your City">
-               <i class="fa fa-map-marker m-r-5"></i>Banglore
+               <i class="fa fa-map-marker m-r-5"></i>{{ $cityName->city_name }}
             </div>
             <div class="form-group">
                <input type="text" class="form-control" placeholder="Search">
@@ -49,7 +49,7 @@
             <button data-ripple type="submit" class="headerSubmit flatButton btn-red"><i class="fa fa-search"></i></button>
          </form>
          <ul class="nav navbar-nav">
-            <li><a  data-ripple="rgba(0,0,0,0.5)" href="#" class="" title="Add Free Listing"><i class="fa fa-plus-circle m-r-5"></i>Add Free Listing</a></li>
+            <li><a  data-ripple="rgba(0,0,0,0.5)" href="{{ route('register.profile.category') }}" class="" title="Add Free Listing"><i class="fa fa-plus-circle m-r-5"></i>Add Free Listing</a></li>
             @if(Auth::guest())
                <li><a data-ripple="rgba(0,0,0,0.5)" href="{{ route('login') }}"><i class="fa fa-sign-in m-r-5"></i>Login</a></li>
                <li><a data-ripple="rgba(0,0,0,0.5)" href="{{ route('register') }}"><i class="fa fa-user-plus m-r-5"></i>Sign Up</a></li>
@@ -118,3 +118,4 @@
       </div>
    </div>
 </nav>
+<div id="feedback-button"><a href="#"><i class="fa fa-commenting-o m-r-5"></i>Feedback</a></div>

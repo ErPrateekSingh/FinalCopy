@@ -15,7 +15,7 @@
         </form>
         <div class="cityModal-topCities col-xs-10 col-xs-offset-1 clearfix">
           <h4>Top Cities</h4>
-          <div data-ripple="rgba(0,0,0,0.5)" class="cityCont text-trim">Delhi</div>
+          <div data-ripple="rgba(0,0,0,0.5)" class="cityCont text-trim selected">Delhi</div>
           <div data-ripple="rgba(0,0,0,0.5)" class="cityCont text-trim">Noida</div>
           <div data-ripple="rgba(0,0,0,0.5)" class="cityCont text-trim">Mumbai</div>
           <div data-ripple="rgba(0,0,0,0.5)" class="cityCont text-trim">Pune</div>

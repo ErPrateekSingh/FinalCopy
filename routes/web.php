@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-   return view('welcome');
-});
+Route::get('/', 'IndexPageController@index');
 
 Auth::routes();
 
-Route::prefix('manage')->middleware('role:superadministrator|administrator|editor|member')->group(function() {
+Route::prefix('manage')->middleware('role:superadministrator|administrator|editor|member|subscriber')->group(function() {
    Route::get('/', 'ManageController@index');
    /* CareZone is for Admin And SuperAdministrator Only */
    Route::get('/carezone', 'ManageController@carezone')->middleware('role:superadministrator|administrator')->name('manage.dashboard');
@@ -43,5 +41,8 @@ Route::get('/email/unique', 'RegisterUserController@checkUniqueEmail')->name('em
    //(OK) Route to get city through ajax request on register/user/details page
 Route::get('/get/city', 'RegisterUserController@ajaxGetCity')->name('get.city');
 
-Route::get('/registration', 'RegisterUserController@showRegistrationForm')->name('registration');
+Route::get('/register/profile/category', 'RegisterProfileController@showRegistrationForm')->name('register.profile.category');
+   //(OK) Route only for registered user as home for news feed (uses auth constructor in controller)
 Route::get('/home', 'HomeController@index')->name('home');
+   //(OK) Route for registered user profile page
+Route::get('/{username}', 'UserProfileController@showUserProfilePage')->name('profilePage')->where('username', '[\w\d]+');

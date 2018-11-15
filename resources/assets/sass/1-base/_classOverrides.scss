@@ -13,6 +13,24 @@
     min-height: 14px;
     line-height: 1;
 }
+//button Overrides
+.button::before {
+   background: none !important;
+   border: none !important;
+}
+
+// Tooltip Overrides
+.tooltip-inner {
+   min-width: 100px;
+   max-width: 100%;
+}
+@media (max-width: 320px) {
+   .tooltip-inner {
+      min-width: initial;
+      max-width: 320px;
+   }
+}
+// Modal Overrides
 .modal {
    &.fade {
       &:not(.in).sideNav .modal-dialog {

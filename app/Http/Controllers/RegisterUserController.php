@@ -34,7 +34,7 @@ class RegisterUserController extends Controller
    /*function to redirect user to user details page after register page*/
    public function showUserDetailsForm() {
       $states = State::all();
-      return view('pages.registration.registerUserDetails', ['states'=> $states]);
+      return view('pages.registerUser.registerUserDetails', ['states'=> $states]);
    }
 
    /*function to post and save data to the database*/
@@ -62,7 +62,7 @@ class RegisterUserController extends Controller
 
    /*function to upload image page after redirected from the register/user/details page*/
    public function showUserImageForm() {
-      return view('pages.registration.registerUserImage');
+      return view('pages.registerUser.registerUserImage');
    }
 
    /*function to post image after upload from the register/user/images page*/
@@ -92,9 +92,4 @@ class RegisterUserController extends Controller
          return redirect()->route('home');
       }
    }
-
-
-   // public function showRegistrationForm() {
-   //    return view('pages.registration.registration');
-   // }
 }

@@ -79,6 +79,7 @@
 
    <!-- Scripts -->
    <script src="{{ asset('js/app.js') }}"></script>
+   <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
    @yield('scripts')
 </body>
 </html>

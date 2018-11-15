@@ -7,7 +7,7 @@ jQuery(function($) {
       if($self.closest("[data-ripple]")) {
          e.stopPropagation();
       }
-      
+
       var initPos = $self.css("position"),
       offs = $self.offset(),
       x = e.pageX - offs.left,

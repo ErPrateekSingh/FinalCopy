@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      // $states = State::all();
+      // $cities = DB::table("cities")->select('city_id','city_name')->where("state_id",$request->state_id)->get();
+      // return view('home', ['states'=> $states]);
+      return view('home');
     }
 }
