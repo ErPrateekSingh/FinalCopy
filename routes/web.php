@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'IndexPageController@index');
+//(OK) Route to fetch city through ajax request on index page 
+Route::get('/fetch/city', 'IndexPageController@ajaxFetchCity')->name('fetch.city');
 
 Auth::routes();
 

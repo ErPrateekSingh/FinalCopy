@@ -12864,10 +12864,9 @@ div::-webkit-scrollbar-thumb:active {
 
 .homepage-hero .wrapper-1 .hero-search-wrapper .heroInput .form-control,
 .homepage-hero .wrapper-1 .hero-search-wrapper .heroCity .form-control {
+  border: none;
   transition: none;
   box-shadow: none;
-  border-width: 0 !important;
-  border-style: solid;
   -o-transition: none;
   -webkit-transition: none;
   -webkit-box-shadow: none;
@@ -12994,9 +12993,12 @@ div::-webkit-scrollbar-thumb:active {
     width: 60%;
   }
 
+  .homepage-hero .wrapper-1 .hero-search-wrapper .heroInput input {
+    border-right: 1px solid #bbb !important;
+  }
+
   .homepage-hero .wrapper-1 .hero-search-wrapper .heroCity {
     width: 27%;
-    border-left: 1px solid #bbb;
   }
 
   .homepage-hero .wrapper-1 .hero-search-wrapper .heroCity i,

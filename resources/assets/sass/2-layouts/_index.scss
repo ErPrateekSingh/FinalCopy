@@ -47,25 +47,20 @@
             }
 
             .form-control {
+               border: none;
                transition: none;
                box-shadow: none;
-               border-width: 0 !important;
-               border-style: solid;
                -o-transition: none;
                -webkit-transition: none;
                -webkit-box-shadow: none;
-               // border-color: #656565;
-               // border-width: 1px 0px 1px;
             }
          }
 
          .heroSubmit {
             float: left;
             border-left: 0 !important;
-            // padding: 6px 18px;
             display: inline-block;
             background-color: $theme-red-light;
-            // border: 1px solid $theme-red-dark;
          }
       }
    }
@@ -75,7 +70,7 @@
    height: auto;
    padding: 80px 0;
    position: relative;
-   // border-bottom: 1px solid #e0e0e0;
+
    .wrapper-2 {}
 
    .wrapper-3 {
@@ -88,7 +83,6 @@
 
    .wrapperTitle {
       color: #454545;
-      // font-size: 40px;
       font-weight: 300;
       position: relative;
       text-align: center;
@@ -183,7 +177,6 @@
 
       .wrapper-1 {
          height: 35em;
-         // padding-top: 11em;
          padding: 10em 4em 0;
 
          h4,
@@ -197,11 +190,13 @@
 
             .heroInput {
                width: 60%;
+               input {
+                  border-right: 1px solid #bbb !important;
+               }
             }
 
             .heroCity {
                width: 27%;
-               border-left: 1px solid #bbb;
             }
 
             .heroCity,
@@ -244,9 +239,6 @@
          div:nth-child(n+17) {
             display: none;
          }
-         // .button-3{
-         //    margin-top: 5.7em;
-         // }
       }
 
       .wrapper-4 {}

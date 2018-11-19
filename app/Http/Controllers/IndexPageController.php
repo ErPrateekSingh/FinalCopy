@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Cookie;
 use App\City;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class IndexPageController extends Controller
 {
@@ -19,4 +19,32 @@ class IndexPageController extends Controller
       }
       return view('welcome', ['cityInfo'=> $cityInfo]);
    }
+
+   public function ajaxFetchCity(Request $request)
+   {
+      $query = $request->term;
+      if ($query) {
+         $cities = DB::table("cities")
+         ->select('city_id','city_name')
+         ->where("city_name", 'like', $query.'%')
+         ->limit(5)
+         ->get();
+         if($cities != '[]'){
+            return response()->json($cities);
+         } else {
+            $cities = DB::table("cities")
+            ->select('city_id','city_name')
+            ->where("city_name", 'like', '%'.$query.'%')
+            ->limit(5)
+            ->get();
+            if($cities != '[]'){
+               return response()->json($cities);
+            } else {
+               $val = '[{"city_id":0,"city_name":"Oops! No City Found"}]';
+               return json_decode($val, true, JSON_UNESCAPED_SLASHES);
+            }
+         }
+      }
+   }
+
 }
