@@ -12338,8 +12338,8 @@ fieldset {
 
 .mainWrapper {
   margin: 0 auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  display: block;
+  position: relative;
 }
 
 .mainWrapper:before,
@@ -12354,7 +12354,6 @@ fieldset {
 
 .mainContentLeft {
   float: left;
-  border-right: 1px solid #ccc;
 }
 
 .mainContentCenter {
@@ -12373,25 +12372,24 @@ fieldset {
 .trialBox {
   color: #777;
   font-size: 40px;
-  margin-top: 10px;
   text-align: center;
+  margin-bottom: 10px;
   background-color: #eee;
 }
 
 @media (min-width: 1200px) {
   .mainWrapper {
-    width: 1180px;
+    width: 1040px;
   }
 
   .mainContentLeft {
-    padding-left: 20px;
-    padding-right: 20px;
-    width: calc(100% - 380px);
+    width: 685px;
+    padding-right: 14px;
   }
 
   .mainSidebarRight {
-    width: 380px;
-    padding: 0px 20px;
+    width: 355px;
+    padding-left: 15px;
   }
 
   .trialBox {
@@ -12986,7 +12984,7 @@ div::-webkit-scrollbar-thumb:active {
 
   .homepage-hero .wrapper-1 .hero-search-wrapper {
     width: 100%;
-    padding: 2em 13% 0;
+    padding: 2em 10% 0;
   }
 
   .homepage-hero .wrapper-1 .hero-search-wrapper .heroInput {
@@ -12998,7 +12996,7 @@ div::-webkit-scrollbar-thumb:active {
   }
 
   .homepage-hero .wrapper-1 .hero-search-wrapper .heroCity {
-    width: 27%;
+    width: 30%;
   }
 
   .homepage-hero .wrapper-1 .hero-search-wrapper .heroCity i,
@@ -13016,9 +13014,10 @@ div::-webkit-scrollbar-thumb:active {
   }
 
   .homepage-hero .wrapper-1 .hero-search-wrapper .heroSubmit {
-    width: 12%;
-    padding: 0.785em;
+    width: 10%;
+    height: 44px;
     line-height: 1;
+    padding: 0.822em;
   }
 
   .homepage-hero .wrapper-1 .hero-search-wrapper .heroSubmit i {
@@ -13583,6 +13582,7 @@ div::-webkit-scrollbar-thumb:active {
 }
 
 footer {
+  margin-top: 100px;
   border-top: 1px solid #f4545f;
 }
 
@@ -13591,14 +13591,11 @@ footer {
   display: block;
   position: relative;
   margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .profileUpperWrapper .profileUserImage {
   float: left;
   margin-top: 80px;
-  margin-left: 15px;
   margin-right: 40px;
   margin-bottom: 80px;
   display: inline-block;
@@ -13706,7 +13703,6 @@ footer {
 
 .profileReviewWrapper {
   margin-top: 45px;
-  padding-left: 25px;
   margin-bottom: 5px;
   padding-right: 25px;
 }
@@ -14866,6 +14862,426 @@ footer {
   .searchModal-body .searchWrap .closeIcon i {
     -webkit-text-stroke: 2px #fff;
   }
+}
+
+.subNav {
+  color: #333;
+  height: 35px;
+  position: relative;
+  background-color: #fafafa;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.subNav .subNavItems {
+  float: left;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-left: 1px solid #e1e1e1;
+}
+
+.subNav .subNavItems:last-child {
+  border-right: 1px solid #e1e1e1;
+}
+
+.searchHeader {
+  color: #333;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.searchHeader .searchHeading {
+  margin-top: 50px;
+  margin-bottom: 5px;
+}
+
+.searchHeader .searchHeading h1,
+.searchHeader .searchHeading p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  display: inline-block;
+}
+
+.searchHeader .searchHeading h1 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.searchHeader .searchHeading p {
+  float: right;
+}
+
+.searchHeader .breadCrumBar a {
+  padding: 4px;
+  color: #0073bb;
+  font-size: 13px;
+}
+
+.searchHeader .breadCrumBar i {
+  color: #777;
+  font-size: 10px;
+}
+
+.searchHeader .filterWrapper {
+  margin-top: 15px;
+}
+
+.searchHeader .filterWrapper .filterWrapperVisible {
+  margin-bottom: 30px;
+}
+
+.searchHeader .filterWrapper .filterWrapperVisible .filterBtn {
+  color: #555;
+  float: left;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-right: 15px;
+  display: inline-block;
+  background-color: #fff;
+}
+
+.searchHeader .filterWrapper .filterWrapperVisible .filterBtn span {
+  z-index: 1;
+  float: left;
+  padding: 11px;
+  display: block;
+  position: relative;
+  margin-right: -1px;
+  border: 1px solid #ccc;
+}
+
+.searchHeader .filterWrapper .filterWrapperVisible .filterBtn span.iBtn {
+  padding: 12px 10px 9px;
+}
+
+.searchHeader .filterWrapper .filterWrapperVisible .filterBtn span.iBtn i {
+  margin: 0 1px;
+  font-size: 16px;
+  font-style: normal;
+}
+
+.searchHeader .filterWrapper .filterWrapperVisible .filterBtn span:hover {
+  z-index: 100;
+  border-color: #adadad;
+  background-color: #e6e5e5;
+}
+
+.searchHeader .filterWrapper .filterWrapperVisible .filterBtn span .active {
+  z-index: 1000;
+  border: 1px solid #d21515;
+  background-color: #f00;
+}
+
+.searchHeader .filterWrapper #filterWrapperHidden {
+  display: none;
+  padding-top: 10px;
+  position: relative;
+  border-top: 1px solid #999;
+}
+
+.searchHeader .filterWrapper #filterWrapperHidden:before,
+.searchHeader .filterWrapper #filterWrapperHidden:after {
+  width: 0;
+  height: 0;
+  left: 694px;
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 0 12px 12px 12px;
+}
+
+.searchHeader .filterWrapper #filterWrapperHidden:before {
+  top: -13px;
+  z-index: 98;
+  border-color: transparent transparent #777 transparent;
+}
+
+.searchHeader .filterWrapper #filterWrapperHidden:after {
+  top: -12px;
+  z-index: 99;
+  border-color: transparent transparent #f5f5f5 transparent;
+}
+
+.searchContent {
+  padding-top: 20px;
+}
+
+.searchContent .searchResultBody {
+  width: 100%;
+  height: auto;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-top: 1px solid #e1e1e1;
+}
+
+.searchContent .searchResultBody .s-r-b-upper {
+  width: 670px;
+  height: 100px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-image,
+.searchContent .searchResultBody .s-r-b-upper .s-r-info,
+.searchContent .searchResultBody .s-r-b-upper .s-r-contact {
+  float: left;
+  display: inline-block;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-image {
+  width: 120px;
+  height: 90px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-image img {
+  border-radius: 4px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info {
+  width: 300px;
+  padding-left: 12px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizName {
+  height: 22px;
+  display: block;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizName h2 {
+  margin: 0;
+  width: 100%;
+  font-size: 16px;
+  padding-top: 3px;
+  display: inline-block;
+  font-weight: 600 !important;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizName h2 a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizName h2 a:hover {
+  text-decoration: underline;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizTags {
+  font-size: 12px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizRating {
+  width: 78px;
+  height: 13px;
+  overflow: visible;
+  display: inline-block;
+  margin-top: 2px;
+  background-image: url(/images/stars-rating.png);
+  background-repeat: no-repeat;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizRating.five-star {
+  background-position: 0px 0px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizRating.four-half-star {
+  background-position: 0 -20px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizRating.four-star {
+  background-position: 0 -40px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizRating.three-half-star {
+  background-position: 0 -60px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizRating.three-star {
+  background-position: 0 -80px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizRating.two-half-star {
+  background-position: 0 -100px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizRating.two-star {
+  background-position: 0 -120px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizRating.one-half-star {
+  background-position: 0 -140px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizRating.one-star {
+  background-position: 0 -160px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizRating.half-star {
+  background-position: 0 -180px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizReviewCount {
+  line-height: 1;
+  font-size: 11px;
+  margin-top: 3px;
+  margin-left: 7px;
+  font-weight: 600;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizReviewCount a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizReviewCount a:hover {
+  text-decoration: underline;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizFacility ul {
+  padding: 0;
+  margin: 0px;
+  list-style: none;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizFacility ul li {
+  color: #444;
+  float: left;
+  cursor: pointer;
+  background: #eef;
+  padding-top: 4px;
+  padding-left: 5px;
+  margin-right: 6px;
+  padding-right: 5px;
+  padding-bottom: 1px;
+  display: inline-block;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-info .bizFacility ul li:hover {
+  background: #ddd;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-contact {
+  width: 250px;
+  padding-left: 10px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-contact .searchAddress,
+.searchContent .searchResultBody .s-r-b-upper .s-r-contact .searchLandmark,
+.searchContent .searchResultBody .s-r-b-upper .s-r-contact .searchContact {
+  margin-bottom: 5px;
+}
+
+.searchContent .searchResultBody .s-r-b-upper .s-r-contact .searchAddress i,
+.searchContent .searchResultBody .s-r-b-upper .s-r-contact .searchLandmark i,
+.searchContent .searchResultBody .s-r-b-upper .s-r-contact .searchContact i {
+  margin-left: 1px;
+  margin-right: 7px;
+  font-size: 13px !important;
+}
+
+.searchContent .searchResultBody .s-r-b-middle {
+  width: 100%;
+  height: 49px;
+  display: block;
+  margin-top: 5px;
+  position: relative;
+  padding-left: 130px;
+}
+
+.searchContent .searchResultBody .s-r-b-middle .searchAppointment {
+  padding: 7px;
+  background: #eee;
+}
+
+.searchContent .searchResultBody .s-r-b-middle .searchAppointment button {
+  width: 230px;
+  font-size: 16px;
+  padding: 6px 9px;
+  display: inline-block;
+}
+
+.searchContent .searchResultBody .s-r-b-middle .searchAppointment p {
+  color: #444;
+  margin: 0px;
+  margin-left: 25px;
+  display: inline-block;
+}
+
+.searchContent .searchResultBody .s-r-b-middle .searchAppointment p span {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+.searchContent .searchResultBody .s-r-b-lower {
+  width: 100%;
+  height: 50px;
+  display: block;
+  position: relative;
+  margin-top: 10px;
+}
+
+.searchContent .searchResultBody .s-r-b-lower .searchReview .s-r-image {
+  margin: 3px;
+  float: left;
+}
+
+.searchContent .searchResultBody .s-r-b-lower .searchReview .s-r-image img {
+  width: 44px;
+  height: 44px;
+}
+
+.searchContent .searchResultBody .s-r-b-lower .searchReview .s-r-p {
+  width: 600px;
+  float: left;
+  padding: 6px;
+  line-height: 1.4;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+.searchContent .searchResultBody .s-r-b-lower .searchReview .s-r-p p {
+  margin: 0px;
+}
+
+.searchContent .searchResultBody .s-r-b-lower .searchReview .s-r-p p a {
+  font-weight: bold;
+}
+
+.searchContent .searchResultPageBottom {
+  width: 100%;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.searchContent .searchResultPageBottom .s-p-b-right {
+  width: auto;
+  float: right;
+  cursor: pointer;
+}
+
+.searchContent .searchResultPageBottom .s-p-b-right a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.searchContent .searchResultPageBottom .s-p-b-right a span {
+  padding: 11px 7px;
+}
+
+.searchContent .searchResultPageBottom .s-p-b-right a span:hover {
+  color: #216a94;
+}
+
+.searchContent .searchResultPageBottom .s-p-b-right a span.active {
+  color: #216a94;
+  border-bottom: 3px solid red;
+}
+
+.searchSidebar .searchResultSideMap {
+  width: 338px;
+  height: 338px;
+  margin-bottom: 10px;
+  border: 1px solid #e6e6e6;
 }
 
 .panel {

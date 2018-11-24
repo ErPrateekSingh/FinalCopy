@@ -813,6 +813,12 @@ $(document).ready(function () {
 });
 // code to display First Letter of Name In Header ENDS
 
+// code to display tooltip STARTS
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+// code to display tooltip ENDS
+
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {

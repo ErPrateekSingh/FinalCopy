@@ -45,8 +45,6 @@
    <meta name="mobile-web-app-capable" content="yes"><!--To be checked and modify Later-->
    <meta name="apple-mobile-web-app-capable" content="yes"><!--To be checked and modify Later-->
    <meta name="apple-mobile-web-app-status-bar-style" content="default"><!--To be checked and modify Later-->
-   <!-- stylesheet for jQuery Autocomplete -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
    <link href="{{ asset('css/app.css') }}" rel="stylesheet"><!--Laravel's stylesheet-->
    @yield('styles')
    <!-- /*<style>
@@ -81,8 +79,6 @@
 
    <!-- Scripts -->
    <script src="{{ asset('js/app.js') }}"></script>
-   <!-- script for jQuery Autocomplete -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
    <!-- script for Cookies -->
    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
    @yield('scripts')

@@ -186,7 +186,7 @@
 
          .hero-search-wrapper {
             width: 100%;
-            padding: 2em 13% 0;
+            padding: 2em 10% 0;
 
             .heroInput {
                width: 60%;
@@ -196,7 +196,7 @@
             }
 
             .heroCity {
-               width: 27%;
+               width: 30%;
             }
 
             .heroCity,
@@ -216,9 +216,10 @@
             }
 
             .heroSubmit {
-               width: 12%;
-               padding: 0.785em;
+               width: 10%;
+               height: 44px;
                line-height: 1;
+               padding: 0.822em;
 
                i {
                   font-size: 1.57em;

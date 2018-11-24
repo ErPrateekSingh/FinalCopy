@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('styles')
+<!-- stylesheet for jQuery Autocomplete -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
 <style>
 @media (max-width: 577px) {/*.m-header .m-search {display: none !important;}.m-header .m-city {float: right;margin-right: 15px;}*/}
 @media (min-width: 576px) {/*.m-header {display: none;}*/}
@@ -30,19 +32,17 @@ input {
             <!-- <h1>Explore around with Zendur</h1> -->
             <!-- <h4>Let us know what are you looking for?</h4> -->
             <div class="hero-search-wrapper">
-               <form id="#">
-               <!-- <form id="#" class="form-horizontal clearfix" method="POST" action="{{ route('register.user.details') }}" role="form" novalidate> -->
-                 {{ csrf_field() }}
-                <div class="heroInput"><i class="fa fa-search"></i>
-                  <input type="text" class="form-control" id="heroSearch" placeholder="Let us know what are you looking for?" autocomplete="off" spellcheck="false" ondrop="return false;">
-                </div>
-                <div class="heroCity"><i class="fa fa-map-marker"></i>
-                  <input type="text" class="form-control" id="heroCitySearch" name="citySelect" placeholder="{{ $cityName->city_name }}" value="{{ $cityName->city_name }}" autocomplete="off" spellcheck="false" ondrop="return false;">
-                  <input type="hidden" id="heroCitySearchId">
-                </div>
-                <!-- <div data-ripple="rgba(0,0,0,0.5)" class="heroCity text-trim" data-toggle="modal" data-target=".cityModal"><i class="fa fa-map-marker"></i>{{ $cityName->city_name }}</div> -->
-                <button data-ripple="rgba(200,0,10,0.5)" class="heroSubmit flatButton"><i class="fa fa-search"></i></button>
-              </form>
+               <form id="#" class="form-horizontal clearfix" method="GET" action="{{ route('register.user.details') }}" role="form" novalidate>
+                  {{ csrf_field() }}
+                  <div class="heroInput"><i class="fa fa-search"></i>
+                     <input type="text" class="form-control" id="heroSearch" name="search_desc" placeholder="Let us know what are you looking for?" value="" autocomplete="off" spellcheck="false" ondrop="return false;">
+                  </div>
+                  <div class="heroCity"><i class="fa fa-map-marker"></i>
+                     <input type="text" class="form-control" id="heroCitySearch" name="search_loc" placeholder="{{ $cityName->city_name }}" value="{{ $cityName->city_name }}" autocomplete="off" spellcheck="false" ondrop="return false;">
+                     <input type="hidden" id="heroCitySearchId">
+                  </div>
+                  <button data-ripple="rgba(200,0,10,0.5)" class="heroSubmit flatButton"><i class="fa fa-search"></i></button>
+               </form>
             </div>
             <h4>India's largest collection of trusted local businesses reviewed by you.</h4>
          </div>
@@ -136,6 +136,8 @@ input {
 @endsection
 
 @section('scripts')
+<!-- script for jQuery Autocomplete -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script>
    $(document).ready(function () {
       //Displays modal if user visits first time

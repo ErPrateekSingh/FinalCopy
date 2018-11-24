@@ -27,3 +27,7 @@ $(document).ready(function(){
   $('.image_text').text($('#userName').text().charAt(0));
 });
 // code to display First Letter of Name In Header ENDS
+
+// code to display tooltip STARTS
+$(function(){$('[data-toggle="tooltip"]').tooltip()});
+// code to display tooltip ENDS

@@ -195,8 +195,8 @@ button:hover {
                         <div class="subCategoryBox"><i class="fa fa-camera m-r-10"></i>Photography</div>
                         <div class="subCategoryBox"><i class="fa fa-cutlery m-r-10"></i>Restaurant</div>
                         <div class="subCategoryBox"><i class="fa fa-cab m-r-10"></i>Taxi Sevice</div>
-                        <div class="subCategoryBox"><i class="fa fa-coffee m-r-10"></i>Tea and Coffee</div>
-                        <div class="subCategoryBox"><i class="fa fa-bus m-r-10"></i>Travel and Tour</div>
+                        <div class="subCategoryBox"><i class="fa fa-coffee m-r-10"></i>Tea &amp; Coffee</div>
+                        <div class="subCategoryBox"><i class="fa fa-bus m-r-10"></i>Travel &amp; Tour</div>
                         <div class="subCategoryBox"><i class="fa fa-plus m-r-10"></i>Other</div>
                      </div>
 

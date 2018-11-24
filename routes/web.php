@@ -12,8 +12,13 @@
 */
 
 Route::get('/', 'IndexPageController@index');
-//(OK) Route to fetch city through ajax request on index page 
+//(OK) Route to fetch city through ajax request on index page
 Route::get('/fetch/city', 'IndexPageController@ajaxFetchCity')->name('fetch.city');
+
+//Routes for search result page
+Route::get('/search', function () {
+    return view('pages.search.searchResult');
+});
 
 Auth::routes();
 
