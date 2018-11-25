@@ -46,6 +46,7 @@
                         <span class="help-block"> {{ $errors->first('password') }} </span>
                         @endif
                      </div>
+                     @captcha
                      <div class="form-group form-group-mat" style="text-align:center;">
                         <button type="submit" class="btn btn-primary" data-ripple="rgba(255,255,255,0.5)" style="width:40%; margin-top: 20px;">
                            Register
@@ -175,7 +176,7 @@ $(document).ready(function(){
    $('#email').on('blur',function(){emailUnique();});
    $('#password').on('blur',function(){($(this).val() == "")?field_clear("password"):Validate('password','password')});
    //Code for Register Form Submit STARTS
-   $('#registerForm').on('submit', function(e){ if(!validateForm()) e.preventDefault(); });
+   $('#registerForm').on('submit', _beforeSubmit = function(e){ if(!validateForm()) { e.preventDefault(); return false; } else { return true; } });
 });
 </script>
 @endsection
